@@ -19,7 +19,6 @@ class ProductsRemoteDataSource {
       log(response.statusCode.toString());
       switch (response.statusCode) {
         case 200:
-          // final jsonn = json.decode(response.body) as List;
           return productModelFromJson(response.body);
         case 400:
           throw ServerException();
