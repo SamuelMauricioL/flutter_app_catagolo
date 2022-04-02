@@ -8,8 +8,13 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:bloc/bloc.dart';
+import 'package:app_catalogo/core/network/network_checker.dart';
+import 'package:app_catalogo/core/storage/storage.dart';
+import 'package:app_catalogo/ui/products/data/datasource/products_local_data_source.dart';
+import 'package:app_catalogo/ui/products/data/datasource/products_remote_data_source.dart';
+import 'package:app_catalogo/ui/products/data/repositories/products_repository.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AppBlocObserver extends BlocObserver {
   @override
@@ -32,8 +37,31 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
 
   await runZonedGuarded(
     () async {
+      final storage = Storage();
+      await storage.init();
+
+      // Network checker
+      final networkChecker = NetworkCheckerImpl();
+
+      // Products
+      final productsLocalDS = ProductsLocalDataSource(storage: storage);
+      final productsRemoteDS = ProductsRemoteDataSource();
+
       await BlocOverrides.runZoned(
-        () async => runApp(await builder()),
+        () async => runApp(
+          MultiRepositoryProvider(
+            providers: [
+              RepositoryProvider<ProductsRepositoryImpl>(
+                create: (_) => ProductsRepositoryImpl(
+                  localDatasource: productsLocalDS,
+                  remoteDataSource: productsRemoteDS,
+                  networkChecker: networkChecker,
+                ),
+              ),
+            ],
+            child: await builder(),
+          ),
+        ),
         blocObserver: AppBlocObserver(),
       );
     },
