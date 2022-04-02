@@ -1,6 +1,16 @@
 include: package:very_good_analysis/analysis_options.2.4.0.yaml
 
+analyzer:
+  exclude: [build/**]
+  language:
+    strict-raw-types: false
+  strong-mode:
+    implicit-casts: false
+    implicit-dynamic: false
+
 linter:
   rules:
     public_member_api_docs: false
     sort_pub_dependencies: false
+    constant_identifier_names: false
+    avoid_dynamic_calls: false
