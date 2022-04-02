@@ -43,7 +43,7 @@ class ProductsList extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          products[i].title,
+                          products[i].name,
                           style: CustomStyle.textH5,
                         ),
                         const SizedBox(height: 10),

@@ -17,77 +17,63 @@ String productModelToJson(List<ProductModel> data) => json.encode(
 class ProductModel {
   ProductModel({
     required this.id,
-    required this.title,
+    required this.name,
     required this.price,
     required this.description,
     required this.category,
     required this.image,
-    required this.rating,
+    required this.count,
+    required this.rate,
+    required this.url,
   });
 
   factory ProductModel.fromJson(dynamic json) => ProductModel(
         id: json['id'] as int,
-        title: json['title'] as String,
-        price: fromIntToDouble(json['price']),
+        name: json['title'] as String,
+        price: double.parse(json['rate'] as String),
         description: json['description'] as String,
         category: json['category'] as String,
         image: json['image'] as String,
-        rating: Rating.fromJson(json['rating'] as Map<String, dynamic>),
+        count: int.parse(json['count'] as String),
+        rate: double.parse(json['rate'] as String),
+        url: json['url'] as String,
       );
 
   int id;
-  String title;
+  String name;
   double price;
   String description;
   String category;
   String image;
-  Rating rating;
+  int count;
+  double rate;
+  String url;
 
   static List<ProductModel> empty() {
     return [
       ProductModel(
         id: 1,
-        title: '',
+        name: '',
         price: 0,
         description: '',
         category: '',
         image: '',
-        rating: Rating(
-          rate: 0,
-          count: 0,
-        ),
+        count: 0,
+        rate: 0,
+        url: '',
       ),
     ];
   }
 
   Map<String, dynamic> toJson() => <String, dynamic>{
         'id': id,
-        'title': title,
+        'name': name,
         'price': price,
         'description': description,
         'category': category,
         'image': image,
-        'rating': rating.toJson(),
-      };
-}
-
-class Rating {
-  Rating({
-    required this.rate,
-    required this.count,
-  });
-
-  factory Rating.fromJson(Map<String, dynamic> json) => Rating(
-        rate: fromIntToDouble(json['rate']),
-        count: json['count'] as int,
-      );
-
-  double rate;
-  int count;
-
-  Map<String, dynamic> toJson() => <String, dynamic>{
-        'rate': rate,
         'count': count,
+        'rate': rate,
       };
 }
 

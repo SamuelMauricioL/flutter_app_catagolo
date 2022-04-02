@@ -5,12 +5,12 @@ import 'package:app_catalogo/ui/products/models/product_model.dart';
 import 'package:http/http.dart' as http;
 
 class ProductsRemoteDataSource {
-  String apiUrl = 'https://fakestoreapi.com';
+  String apiUrl = 'https://retoolapi.dev/2XpavB';
 
   Future<List<ProductModel>> getProductList() async {
     try {
       final response = await http.get(
-        Uri.parse('$apiUrl/products'),
+        Uri.parse('$apiUrl/catalog'),
         headers: {
           'Content-type': 'application/json',
           'Accept': 'application/json',
