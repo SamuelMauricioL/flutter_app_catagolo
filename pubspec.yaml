@@ -17,6 +17,7 @@ dependencies:
   equatable: ^2.0.3
   connectivity_plus: ^2.2.1
   get_storage: ^2.0.3
+  iconsax: ^0.0.8
 
 dev_dependencies:
   bloc_test: ^9.0.3
