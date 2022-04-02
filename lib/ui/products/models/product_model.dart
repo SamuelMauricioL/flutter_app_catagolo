@@ -65,6 +65,16 @@ class ProductModel {
     ];
   }
 
+  static List<String> getCategories(List<ProductModel> products) {
+    final _categories = <String>[];
+    for (final p in products) {
+      if (!_categories.contains(p.category)) {
+        _categories.add(p.category);
+      }
+    }
+    return _categories;
+  }
+
   Map<String, dynamic> toJson() => <String, dynamic>{
         'id': id,
         'name': name,

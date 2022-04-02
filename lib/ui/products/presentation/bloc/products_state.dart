@@ -14,12 +14,14 @@ class ProductsLoading extends ProductsState {}
 class ProductsLoaded extends ProductsState {
   const ProductsLoaded({
     required this.products,
+    required this.categories,
   });
 
   final List<ProductModel> products;
+  final List<String> categories;
 
   @override
-  List<Object> get props => [products];
+  List<Object> get props => [products, categories];
 }
 
 class ProductsError extends ProductsState {

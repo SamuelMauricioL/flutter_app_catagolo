@@ -23,7 +23,12 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
     final products = await repository.getProductList();
     products.when(
       ok: (list) {
-        emit(ProductsLoaded(products: list));
+        emit(
+          ProductsLoaded(
+            products: list,
+            categories: ProductModel.getCategories(list),
+          ),
+        );
       },
       err: (error) {
         emit(

@@ -3,7 +3,8 @@ import 'package:app_catalogo/ui/shared/custom_style.dart';
 import 'package:flutter/material.dart';
 
 class ProductsItemFilter extends StatelessWidget {
-  const ProductsItemFilter({Key? key}) : super(key: key);
+  const ProductsItemFilter({Key? key, required this.title}) : super(key: key);
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,7 @@ class ProductsItemFilter extends StatelessWidget {
             ),
             child: Center(
               child: Text(
-                'Headphone',
+                title,
                 style:
                     CustomStyle.textH8Bold.copyWith(color: CustomColor.white),
               ),
