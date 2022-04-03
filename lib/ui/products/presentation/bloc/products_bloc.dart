@@ -47,10 +47,20 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
     Emitter emit,
   ) async {
     emit(ProductsLoading());
-    _productsLoaded = _productsLoaded.copyWith(
-      category: event.category,
-      isLoadMore: true,
-    );
+    if (event.category != _productsLoaded.category) {
+      _productsLoaded = _productsLoaded.copyWith(
+        page: 2,
+        products: [],
+        hasNextPage: true,
+        isLoadingMore: true,
+        category: event.category,
+      );
+    } else {
+      _productsLoaded = _productsLoaded.copyWith(
+        isLoadingMore: true,
+        category: event.category,
+      );
+    }
     emit(_productsLoaded);
 
     final products = await repository.getProductListByCategory(
@@ -64,9 +74,9 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
         _productsLoaded.products.addAll(list);
         _productsLoaded = _productsLoaded.copyWith(
           products: _productsLoaded.products,
-          isLoadMore: false,
+          isLoadingMore: false,
           page: _productsLoaded.page + 1,
-          hasPage: list.isNotEmpty,
+          hasNextPage: list.isNotEmpty,
         );
         emit(_productsLoaded);
       },

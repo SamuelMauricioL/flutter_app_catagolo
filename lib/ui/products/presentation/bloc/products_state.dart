@@ -16,33 +16,33 @@ class ProductsLoaded extends ProductsState {
     this.products = const [],
     this.categories = const [],
     this.category = CATEGORY_ALL,
-    this.isLoadMore = false,
+    this.isLoadingMore = false,
     this.page = 2,
-    this.hasPage = true,
+    this.hasNextPage = true,
   });
 
   final List<ProductModel> products;
   final List<String> categories;
   final String category;
-  final bool isLoadMore;
+  final bool isLoadingMore;
   final int page;
-  final bool hasPage;
+  final bool hasNextPage;
 
   ProductsLoaded copyWith({
     List<ProductModel>? products,
     List<String>? categories,
     String? category,
-    bool? isLoadMore,
+    bool? isLoadingMore,
     int? page,
-    bool? hasPage,
+    bool? hasNextPage,
   }) {
     return ProductsLoaded(
       products: products ?? this.products,
       categories: categories ?? this.categories,
       category: category ?? this.category,
-      isLoadMore: isLoadMore ?? this.isLoadMore,
+      isLoadingMore: isLoadingMore ?? this.isLoadingMore,
       page: page ?? this.page,
-      hasPage: hasPage ?? this.hasPage,
+      hasNextPage: hasNextPage ?? this.hasNextPage,
     );
   }
 

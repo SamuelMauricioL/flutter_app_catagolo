@@ -81,10 +81,10 @@ class ProductsView extends StatelessWidget {
               BlocBuilder<ProductsBloc, ProductsState>(
                 buildWhen: (previous, current) => current is ProductsLoaded,
                 builder: (_, state) {
-                  if (state is ProductsLoaded && state.isLoadMore) {
+                  if (state is ProductsLoaded && state.isLoadingMore) {
                     return const CustomLoading();
                   }
-                  if (state is ProductsLoaded && !state.hasPage) {
+                  if (state is ProductsLoaded && !state.hasNextPage) {
                     return Container(
                       padding: const EdgeInsets.only(top: 20, bottom: 20),
                       color: CustomColor.secondary,
