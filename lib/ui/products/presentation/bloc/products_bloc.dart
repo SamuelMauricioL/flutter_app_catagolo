@@ -11,9 +11,13 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
     required this.repository,
   }) : super(ProductsInitial()) {
     on<ProductEventListCalled>(_onProductEventList);
+    on<ProductEventListByCategoryCalled>(_onProductEventListByCategory);
   }
 
   final ProductsRepository repository;
+
+  ProductsLoaded _productsLoaded = const ProductsLoaded();
+  ProductsLoaded get productsLoaded => _productsLoaded;
 
   Future<void> _onProductEventList(
     ProductEventListCalled event,
@@ -23,10 +27,33 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
     final products = await repository.getProductList();
     products.when(
       ok: (list) {
+        _productsLoaded = _productsLoaded.copyWith(
+          products: list,
+          categories: ProductModel.getCategories(list),
+        );
+        emit(_productsLoaded);
+      },
+      err: (error) {
         emit(
-          ProductsLoaded(
+          const ProductsError(
+            message: 'Ocurrio un error al traer los productos',
+          ),
+        );
+      },
+    );
+  }
+
+  Future<void> _onProductEventListByCategory(
+    ProductEventListByCategoryCalled event,
+    Emitter emit,
+  ) async {
+    emit(ProductsLoading());
+    final products = await repository.getProductListByCategory(event.category);
+    products.when(
+      ok: (list) {
+        emit(
+          _productsLoaded.copyWith(
             products: list,
-            categories: ProductModel.getCategories(list),
           ),
         );
       },

@@ -8,10 +8,17 @@ class ProductsFilterList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bloc = context.read<ProductsBloc>();
     return SizedBox(
       height: 30,
       width: double.infinity,
       child: BlocBuilder<ProductsBloc, ProductsState>(
+        buildWhen: (previous, current) {
+          if (previous is ProductsLoaded) {
+            return previous.categories != bloc.productsLoaded.categories;
+          }
+          return true;
+        },
         builder: (_, state) {
           if (state is ProductsLoaded) {
             return ListView.builder(
@@ -22,7 +29,11 @@ class ProductsFilterList extends StatelessWidget {
                 return Padding(
                   padding: const EdgeInsets.only(right: 10),
                   child: GestureDetector(
-                    onTap: () {},
+                    onTap: () => bloc.add(
+                      ProductEventListByCategoryCalled(
+                        category: state.categories[i],
+                      ),
+                    ),
                     child: ProductsItemFilter(title: state.categories[i]),
                   ),
                 );

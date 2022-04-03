@@ -29,4 +29,27 @@ class ProductsRemoteDataSource {
       throw ServerException();
     }
   }
+
+  Future<List<ProductModel>> getProductListByCategory(String category) async {
+    try {
+      final response = await http.get(
+        Uri.parse('$apiUrl/catalog?category=$category'),
+        headers: {
+          'Content-type': 'application/json',
+          'Accept': 'application/json',
+        },
+      );
+      log(response.statusCode.toString());
+      switch (response.statusCode) {
+        case 200:
+          return productModelFromJson(response.body);
+        case 400:
+          throw ServerException();
+        default:
+          throw ServerException();
+      }
+    } catch (e) {
+      throw ServerException();
+    }
+  }
 }

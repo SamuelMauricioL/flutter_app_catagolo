@@ -8,7 +8,9 @@ import 'package:oxidized/oxidized.dart';
 
 abstract class ProductsRepository {
   Future<Result<List<ProductModel>, Failure>> getProductList();
-  Future<Result<List<ProductModel>, Failure>> getCategoryList();
+  Future<Result<List<ProductModel>, Failure>> getProductListByCategory(
+    String category,
+  );
 }
 
 class ProductsRepositoryImpl implements ProductsRepository {
@@ -43,7 +45,25 @@ class ProductsRepositoryImpl implements ProductsRepository {
   }
 
   @override
-  Future<Result<List<ProductModel>, Failure>> getCategoryList() {
-    throw UnimplementedError();
+  Future<Result<List<ProductModel>, Failure>> getProductListByCategory(
+    String category,
+  ) async {
+    if (await networkChecker.isConnected) {
+      try {
+        final remote =
+            await remoteDataSource.getProductListByCategory(category);
+        localDatasource.cacheProducts(remote);
+        return Result.ok(remote);
+      } on ServerException {
+        return Result.err(ServerFailure());
+      }
+    } else {
+      try {
+        final local = await remoteDataSource.getProductList();
+        return Result.ok(local);
+      } on CacheException {
+        return Result.err(CacheFailure());
+      }
+    }
   }
 }

@@ -13,12 +13,22 @@ class ProductsLoading extends ProductsState {}
 
 class ProductsLoaded extends ProductsState {
   const ProductsLoaded({
-    required this.products,
-    required this.categories,
+    this.products = const [],
+    this.categories = const [],
   });
 
   final List<ProductModel> products;
   final List<String> categories;
+
+  ProductsLoaded copyWith({
+    List<ProductModel>? products,
+    List<String>? categories,
+  }) {
+    return ProductsLoaded(
+      products: products ?? this.products,
+      categories: categories ?? this.categories,
+    );
+  }
 
   @override
   List<Object> get props => [products, categories];
