@@ -4,6 +4,7 @@ import 'package:app_catalogo/ui/products/presentation/view/producst_filter_list.
 import 'package:app_catalogo/ui/products/presentation/view/products_app_bar.dart';
 import 'package:app_catalogo/ui/products/presentation/view/products_banner.dart';
 import 'package:app_catalogo/ui/products/presentation/view/products_list.dart';
+import 'package:app_catalogo/ui/shared/custom_color.dart';
 import 'package:app_catalogo/ui/shared/custom_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -60,9 +61,14 @@ class ProductsView extends StatelessWidget {
               const SizedBox(height: 10),
               Expanded(
                 child: BlocBuilder<ProductsBloc, ProductsState>(
+                  // buildWhen: (prev, current) => current is ProductsLoaded,
                   builder: (_, state) {
                     if (state is ProductsLoaded) {
-                      return ProductsList(products: state.products);
+                      return ProductsList(
+                        products: state.products,
+                        category: state.category,
+                        productsBloc: context.read<ProductsBloc>(),
+                      );
                     }
                     if (state is ProductsError) {
                       return Text(state.message);
@@ -72,6 +78,26 @@ class ProductsView extends StatelessWidget {
                     );
                   },
                 ),
+              ),
+              BlocBuilder<ProductsBloc, ProductsState>(
+                buildWhen: (previous, current) => current is ProductsLoaded,
+                builder: (_, state) {
+                  if (state is ProductsLoaded && state.isLoadMore) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                  if (state is ProductsLoaded && !state.hasPage) {
+                    return Container(
+                      padding: const EdgeInsets.only(top: 20, bottom: 20),
+                      color: CustomColor.secondary,
+                      child: const Center(
+                        child: Text('You have fetched all of the content'),
+                      ),
+                    );
+                  }
+                  return const SizedBox.shrink();
+                },
               ),
             ],
           ),

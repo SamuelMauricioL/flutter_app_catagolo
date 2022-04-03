@@ -16,21 +16,33 @@ class ProductsLoaded extends ProductsState {
     this.products = const [],
     this.categories = const [],
     this.category = CATEGORY_ALL,
+    this.isLoadMore = false,
+    this.page = 2,
+    this.hasPage = true,
   });
 
   final List<ProductModel> products;
   final List<String> categories;
   final String category;
+  final bool isLoadMore;
+  final int page;
+  final bool hasPage;
 
   ProductsLoaded copyWith({
     List<ProductModel>? products,
     List<String>? categories,
     String? category,
+    bool? isLoadMore,
+    int? page,
+    bool? hasPage,
   }) {
     return ProductsLoaded(
       products: products ?? this.products,
       categories: categories ?? this.categories,
       category: category ?? this.category,
+      isLoadMore: isLoadMore ?? this.isLoadMore,
+      page: page ?? this.page,
+      hasPage: hasPage ?? this.hasPage,
     );
   }
 

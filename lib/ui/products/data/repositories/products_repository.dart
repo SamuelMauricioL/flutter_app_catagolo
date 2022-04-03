@@ -10,6 +10,7 @@ abstract class ProductsRepository {
   Future<Result<List<ProductModel>, Failure>> getProductList();
   Future<Result<List<ProductModel>, Failure>> getProductListByCategory(
     String category,
+    int page,
   );
 }
 
@@ -36,7 +37,7 @@ class ProductsRepositoryImpl implements ProductsRepository {
       }
     } else {
       try {
-        final local = await remoteDataSource.getProductList();
+        final local = await localDatasource.getLastListProducts();
         return Result.ok(local);
       } on CacheException {
         return Result.err(CacheFailure());
@@ -47,11 +48,12 @@ class ProductsRepositoryImpl implements ProductsRepository {
   @override
   Future<Result<List<ProductModel>, Failure>> getProductListByCategory(
     String category,
+    int page,
   ) async {
     if (await networkChecker.isConnected) {
       try {
         final remote =
-            await remoteDataSource.getProductListByCategory(category);
+            await remoteDataSource.getProductListByCategory(category, page);
         localDatasource.cacheProducts(remote);
         return Result.ok(remote);
       } on ServerException {
@@ -59,7 +61,7 @@ class ProductsRepositoryImpl implements ProductsRepository {
       }
     } else {
       try {
-        final local = await remoteDataSource.getProductList();
+        final local = await localDatasource.getLastListProducts();
         return Result.ok(local);
       } on CacheException {
         return Result.err(CacheFailure());

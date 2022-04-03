@@ -16,7 +16,6 @@ class ProductsRemoteDataSource {
           'Accept': 'application/json',
         },
       );
-      log(response.statusCode.toString());
       switch (response.statusCode) {
         case 200:
           return productModelFromJson(response.body);
@@ -30,10 +29,16 @@ class ProductsRemoteDataSource {
     }
   }
 
-  Future<List<ProductModel>> getProductListByCategory(String category) async {
+  Future<List<ProductModel>> getProductListByCategory(
+    String category,
+    int page,
+  ) async {
+    final uri = category == CATEGORY_ALL
+        ? Uri.parse('$apiUrl/catalog?_page=$page&_limit=5')
+        : Uri.parse('$apiUrl/catalog?_page=$page&_limit=5&category=$category');
     try {
       final response = await http.get(
-        Uri.parse('$apiUrl/catalog?category=$category'),
+        uri,
         headers: {
           'Content-type': 'application/json',
           'Accept': 'application/json',

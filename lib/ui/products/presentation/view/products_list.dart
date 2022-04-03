@@ -1,20 +1,58 @@
 import 'package:app_catalogo/ui/products/models/product_model.dart';
+import 'package:app_catalogo/ui/products/presentation/bloc/products_bloc.dart';
 import 'package:app_catalogo/ui/shared/custom_color.dart';
 import 'package:app_catalogo/ui/shared/custom_style.dart';
 import 'package:flutter/material.dart';
 
-class ProductsList extends StatelessWidget {
+class ProductsList extends StatefulWidget {
   const ProductsList({
     Key? key,
     required this.products,
+    required this.productsBloc,
+    required this.category,
   }) : super(key: key);
 
   final List<ProductModel> products;
+  final ProductsBloc productsBloc;
+  final String category;
+
+  @override
+  State<ProductsList> createState() => _ProductsListState();
+}
+
+class _ProductsListState extends State<ProductsList> {
+  late ScrollController _controller;
+  String message = '';
+
+  void _scrollListener() {
+    if (_controller.offset >= _controller.position.maxScrollExtent &&
+        !_controller.position.outOfRange) {
+      widget.productsBloc.add(
+        ProductEventListByCategoryCalled(
+          category: widget.category,
+        ),
+      );
+    }
+  }
+
+  @override
+  void initState() {
+    _controller = ScrollController();
+    _controller.addListener(_scrollListener);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _controller.removeListener(_scrollListener);
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: products.length,
+      controller: _controller,
+      itemCount: widget.products.length,
       itemBuilder: (_, i) {
         return Padding(
           padding: const EdgeInsets.only(bottom: 10),
@@ -30,7 +68,7 @@ class ProductsList extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(10),
                   child: Image.network(
-                    products[i].image,
+                    widget.products[i].image,
                     fit: BoxFit.cover,
                     width: 100,
                     height: 100,
@@ -43,12 +81,12 @@ class ProductsList extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          products[i].name,
+                          widget.products[i].name,
                           style: CustomStyle.textH5,
                         ),
                         const SizedBox(height: 10),
                         Text(
-                          products[i].description,
+                          widget.products[i].description,
                           style: CustomStyle.textH8
                               .copyWith(color: CustomColor.gray),
                           overflow: TextOverflow.ellipsis,
@@ -59,7 +97,7 @@ class ProductsList extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              '\$${products[i].price}',
+                              '\$${widget.products[i].price}',
                               style: CustomStyle.textH4.copyWith(
                                 color: CustomColor.primary,
                               ),

@@ -27,7 +27,7 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
     products.when(
       ok: (list) {
         _productsLoaded = _productsLoaded.copyWith(
-          products: list,
+          products: list.sublist(0, 5),
           categories: ProductModel.getCategories(list),
         );
         emit(_productsLoaded);
@@ -46,23 +46,29 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
     ProductEventListByCategoryCalled event,
     Emitter emit,
   ) async {
+    emit(ProductsLoading());
     _productsLoaded = _productsLoaded.copyWith(
       category: event.category,
-      products: [],
+      isLoadMore: true,
     );
     emit(_productsLoaded);
 
-    emit(ProductsLoading());
-
-    final products = event.category == CATEGORY_ALL
-        ? await repository.getProductList()
-        : await repository.getProductListByCategory(event.category);
+    final products = await repository.getProductListByCategory(
+      event.category,
+      _productsLoaded.page,
+    );
 
     products.when(
       ok: (list) {
-        emit(
-          _productsLoaded.copyWith(products: list),
+        emit(ProductsLoading());
+        _productsLoaded.products.addAll(list);
+        _productsLoaded = _productsLoaded.copyWith(
+          products: _productsLoaded.products,
+          isLoadMore: false,
+          page: _productsLoaded.page + 1,
+          hasPage: list.isNotEmpty,
         );
+        emit(_productsLoaded);
       },
       err: (error) {
         emit(
