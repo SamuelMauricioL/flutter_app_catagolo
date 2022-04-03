@@ -45,7 +45,18 @@ class ProductsView extends StatelessWidget {
               const SizedBox(height: 20),
               Text('Popular Category', style: CustomStyle.textH1),
               const SizedBox(height: 20),
-              const ProductsFilterList(),
+              BlocBuilder<ProductsBloc, ProductsState>(
+                buildWhen: (previous, current) => current is ProductsLoaded,
+                builder: (context, state) {
+                  if (state is ProductsLoaded) {
+                    return ProductsFilterList(
+                      categories: state.categories,
+                      category: state.category,
+                    );
+                  }
+                  return const SizedBox.shrink();
+                },
+              ),
               const SizedBox(height: 10),
               Expanded(
                 child: BlocBuilder<ProductsBloc, ProductsState>(

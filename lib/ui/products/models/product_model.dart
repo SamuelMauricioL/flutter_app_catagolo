@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+const String CATEGORY_ALL = 'All';
+
 List<ProductModel> productModelFromJson(String str) => List<ProductModel>.from(
       (json.decode(str) as List<dynamic>).map(
         (dynamic x) {
@@ -66,7 +68,7 @@ class ProductModel {
   }
 
   static List<String> getCategories(List<ProductModel> products) {
-    final _categories = <String>[];
+    final _categories = <String>[CATEGORY_ALL];
     for (final p in products) {
       if (!_categories.contains(p.category)) {
         _categories.add(p.category);

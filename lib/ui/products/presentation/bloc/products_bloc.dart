@@ -17,7 +17,6 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
   final ProductsRepository repository;
 
   ProductsLoaded _productsLoaded = const ProductsLoaded();
-  ProductsLoaded get productsLoaded => _productsLoaded;
 
   Future<void> _onProductEventList(
     ProductEventListCalled event,
@@ -47,14 +46,17 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
     ProductEventListByCategoryCalled event,
     Emitter emit,
   ) async {
+    _productsLoaded = _productsLoaded.copyWith(
+      category: event.category,
+      products: [],
+    );
+    emit(_productsLoaded);
     emit(ProductsLoading());
     final products = await repository.getProductListByCategory(event.category);
     products.when(
       ok: (list) {
         emit(
-          _productsLoaded.copyWith(
-            products: list,
-          ),
+          _productsLoaded.copyWith(products: list),
         );
       },
       err: (error) {

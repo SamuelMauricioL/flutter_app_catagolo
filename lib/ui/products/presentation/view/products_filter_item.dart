@@ -3,8 +3,13 @@ import 'package:app_catalogo/ui/shared/custom_style.dart';
 import 'package:flutter/material.dart';
 
 class ProductsItemFilter extends StatelessWidget {
-  const ProductsItemFilter({Key? key, required this.title}) : super(key: key);
+  const ProductsItemFilter({
+    Key? key,
+    required this.title,
+    required this.isSelected,
+  }) : super(key: key);
   final String title;
+  final bool isSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +18,7 @@ class ProductsItemFilter extends StatelessWidget {
         Card(
           elevation: 0,
           margin: EdgeInsets.zero,
-          color: CustomColor.primary,
+          color: isSelected ? CustomColor.primary : CustomColor.white,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(6),
           ),
@@ -25,8 +30,9 @@ class ProductsItemFilter extends StatelessWidget {
             child: Center(
               child: Text(
                 title,
-                style:
-                    CustomStyle.textH8Bold.copyWith(color: CustomColor.white),
+                style: CustomStyle.textH8Bold.copyWith(
+                  color: isSelected ? CustomColor.white : CustomColor.primary,
+                ),
               ),
             ),
           ),
