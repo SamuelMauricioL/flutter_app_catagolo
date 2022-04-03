@@ -1,9 +1,7 @@
-import 'package:app_catalogo/core/error/failures.dart';
 import 'package:app_catalogo/ui/products/data/repositories/products_repository.dart';
 import 'package:app_catalogo/ui/products/models/product_model.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:oxidized/oxidized.dart';
 
 part 'products_event.dart';
 part 'products_state.dart';
@@ -56,12 +54,10 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
 
     emit(ProductsLoading());
 
-    final Result<List<ProductModel>, Failure> products;
-    if (event.category == CATEGORY_ALL) {
-      products = await repository.getProductList();
-    } else {
-      products = await repository.getProductListByCategory(event.category);
-    }
+    final products = event.category == CATEGORY_ALL
+        ? await repository.getProductList()
+        : await repository.getProductListByCategory(event.category);
+
     products.when(
       ok: (list) {
         emit(
