@@ -19,3 +19,5 @@ class ProductEventListByCategoryCalled extends ProductsEvent {
   @override
   List<Object> get props => [category];
 }
+
+class ProductEventDisableBottomBanner extends ProductsEvent {}

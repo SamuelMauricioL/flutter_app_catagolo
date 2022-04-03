@@ -12,6 +12,7 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
   }) : super(ProductsInitial()) {
     on<ProductEventListCalled>(_onProductEventList);
     on<ProductEventListByCategoryCalled>(_onProductEventListByCategory);
+    on<ProductEventDisableBottomBanner>(_onProductEventDisableBottomBanner);
   }
 
   final ProductsRepository repository;
@@ -49,17 +50,14 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
     emit(ProductsLoading());
     if (event.category != _productsLoaded.category) {
       _productsLoaded = _productsLoaded.copyWith(
-        page: 2,
+        page: 1,
         products: [],
         hasNextPage: true,
         isLoadingMore: true,
         category: event.category,
       );
     } else {
-      _productsLoaded = _productsLoaded.copyWith(
-        isLoadingMore: true,
-        category: event.category,
-      );
+      _productsLoaded = _productsLoaded.copyWith(isLoadingMore: true);
     }
     emit(_productsLoaded);
 
@@ -88,5 +86,19 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
         );
       },
     );
+  }
+
+  Future<void> _onProductEventDisableBottomBanner(
+    ProductEventDisableBottomBanner event,
+    Emitter emit,
+  ) async {
+    if (!_productsLoaded.hasNextPage) {
+      emit(ProductsLoading());
+      _productsLoaded = _productsLoaded.copyWith(
+        hasNextPage: true,
+        isLoadingMore: false,
+      );
+      emit(_productsLoaded);
+    }
   }
 }
