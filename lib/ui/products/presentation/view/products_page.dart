@@ -6,6 +6,7 @@ import 'package:app_catalogo/ui/products/presentation/view/products_banner.dart'
 import 'package:app_catalogo/ui/products/presentation/view/products_list.dart';
 import 'package:app_catalogo/ui/shared/custom_color.dart';
 import 'package:app_catalogo/ui/shared/custom_style.dart';
+import 'package:app_catalogo/ui/shared/loading/custom_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -73,9 +74,7 @@ class ProductsView extends StatelessWidget {
                     if (state is ProductsError) {
                       return Text(state.message);
                     }
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
+                    return const CustomLoading();
                   },
                 ),
               ),
@@ -83,9 +82,7 @@ class ProductsView extends StatelessWidget {
                 buildWhen: (previous, current) => current is ProductsLoaded,
                 builder: (_, state) {
                   if (state is ProductsLoaded && state.isLoadMore) {
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
+                    return const CustomLoading();
                   }
                   if (state is ProductsLoaded && !state.hasPage) {
                     return Container(
