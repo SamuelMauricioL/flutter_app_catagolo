@@ -5,14 +5,10 @@ class SearchField extends StatelessWidget {
   const SearchField({
     Key? key,
     this.onChanged,
-    this.onTap,
     this.hintText = 'Buscar...',
-    this.onSubmitted,
   }) : super(key: key);
 
   final ValueChanged<String>? onChanged;
-  final ValueChanged<String>? onSubmitted;
-  final VoidCallback? onTap;
   final String? hintText;
 
   @override
@@ -37,29 +33,13 @@ class SearchField extends StatelessWidget {
             hintTextDirection: TextDirection.ltr,
             enabledBorder: const OutlineInputBorder(
               borderSide: BorderSide(color: CustomColor.white),
-              // borderRadius: const BorderRadius.all(Radius.circular(30)),
             ),
             focusedBorder: const OutlineInputBorder(
               borderSide: BorderSide(color: CustomColor.white),
-              // borderRadius: const BorderRadius.all(Radius.circular(30)),
             ),
             prefixIcon:
                 const Icon(Icons.search, size: 25, color: Colors.black45),
-            // suffixIcon: InkWell(
-            //   onTap: () {},
-            //   child: Container(
-            //     padding: EdgeInsets.all(defaultPadding * 0.75),
-            //     margin: EdgeInsets.symmetric(horizontal: defaultPadding / 2),
-            //     decoration: BoxDecoration(
-            //       color: kblue,
-            //       borderRadius: const BorderRadius.all(Radius.circular(10)),
-            //     ),
-            //     child: SvgPicture.asset("assets/icons/Search.svg"),
-            //   ),
-            // ),
           ),
-          onTap: onTap,
-          onFieldSubmitted: onSubmitted,
         ),
       ),
     );
