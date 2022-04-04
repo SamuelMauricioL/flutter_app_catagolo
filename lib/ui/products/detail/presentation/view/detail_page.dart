@@ -1,4 +1,4 @@
-import 'package:app_catalogo/ui/products/detail/presentation/detail_app_bar.dart';
+import 'package:app_catalogo/ui/products/detail/presentation/view/detail_app_bar.dart';
 import 'package:app_catalogo/ui/products/presentation/bloc/products_bloc.dart';
 import 'package:app_catalogo/ui/shared/custom_color.dart';
 import 'package:app_catalogo/ui/shared/custom_style.dart';
