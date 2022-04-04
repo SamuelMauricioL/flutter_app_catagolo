@@ -9,12 +9,10 @@ class ProductsLocalDataSource {
 
   final Storage storage;
 
-  Future<void> cacheFavorite(ProductModel product) async {
+  Future<List<ProductModel>> getFavorites(ProductModel products) async {
     try {
       final list = await storage.read(CACHED_FAVORITES);
-      final products = productModelFromJson(list);
-      products.add(product);
-      await storage.write(CACHED_FAVORITES, productModelToJson(products));
+      return Future.value(productModelFromJson(list));
     } catch (e) {
       throw CacheException();
     }
