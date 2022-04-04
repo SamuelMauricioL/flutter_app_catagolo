@@ -4,8 +4,8 @@ import 'package:app_catalogo/core/storage/storage.dart';
 
 const CACHED_FAVORITES = 'CACHED_FAVORITES';
 
-class ProductsLocalDataSource {
-  ProductsLocalDataSource({required this.storage});
+class FavoritesLocalDataSource {
+  FavoritesLocalDataSource({required this.storage});
 
   final Storage storage;
 
