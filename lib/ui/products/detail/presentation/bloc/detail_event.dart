@@ -6,3 +6,12 @@ abstract class DetailEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class DetailEventAddToFavorites extends DetailEvent {
+  const DetailEventAddToFavorites(this.product);
+
+  final ProductModel product;
+
+  @override
+  List<Object> get props => [product];
+}
