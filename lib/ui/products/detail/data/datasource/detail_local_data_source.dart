@@ -10,11 +10,16 @@ class DetailLocalDataSource {
   final Storage storage;
 
   Future<bool> cacheFavorite(ProductModel product) async {
+    final List<ProductModel> favorites;
     try {
-      final list = await storage.read(CACHED_FAVORITES);
-      final products = productModelFromJson(list);
-      products.add(product);
-      await storage.write(CACHED_FAVORITES, productModelToJson(products));
+      final cachedFavorites = await storage.read(CACHED_FAVORITES);
+      if (cachedFavorites == null) {
+        await storage.write(CACHED_FAVORITES, productModelToJson([product]));
+      } else {
+        favorites = productModelFromJson(cachedFavorites);
+        favorites.add(product);
+        await storage.write(CACHED_FAVORITES, productModelToJson(favorites));
+      }
       return true;
     } catch (e) {
       throw CacheException();

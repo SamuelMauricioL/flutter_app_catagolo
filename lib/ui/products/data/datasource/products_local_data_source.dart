@@ -15,7 +15,7 @@ class ProductsLocalDataSource {
   Future<List<ProductModel>> getLastListProducts() async {
     try {
       final list = await storage.read(CACHED_PRODUCTS);
-      return Future.value(productModelFromJson(list));
+      return Future.value(productModelFromJson(list!));
     } catch (e) {
       throw CacheException();
     }

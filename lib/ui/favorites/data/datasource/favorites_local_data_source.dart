@@ -12,7 +12,7 @@ class FavoritesLocalDataSource {
   Future<List<ProductModel>> getFavorites() async {
     try {
       final list = await storage.read(CACHED_FAVORITES);
-      return Future.value(productModelFromJson(list));
+      return Future.value(productModelFromJson(list!));
     } catch (e) {
       throw CacheException();
     }

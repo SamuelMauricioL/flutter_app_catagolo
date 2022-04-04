@@ -11,7 +11,7 @@ class Storage {
     await getStorage.write(key, value);
   }
 
-  Future<String> read(String key) {
+  Future<String?> read(String key) {
     return Future.value(getStorage.read(key));
   }
 
