@@ -21,3 +21,12 @@ class ProductEventListByCategoryCalled extends ProductsEvent {
 }
 
 class ProductEventDisableBottomBanner extends ProductsEvent {}
+
+class ProductEventSearchProduct extends ProductsEvent {
+  const ProductEventSearchProduct(this.keyword);
+
+  final String keyword;
+
+  @override
+  List<Object> get props => [keyword];
+}

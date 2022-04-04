@@ -13,6 +13,7 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
     on<ProductEventListCalled>(_onProductEventList);
     on<ProductEventListByCategoryCalled>(_onProductEventListByCategory);
     on<ProductEventDisableBottomBanner>(_onProductEventDisableBottomBanner);
+    on<ProductEventSearchProduct>(_onProductEventSearchProduct);
   }
 
   final ProductsRepository repository;
@@ -98,6 +99,28 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
         hasNextPage: true,
         isLoadingMore: false,
       );
+      emit(_productsLoaded);
+    }
+  }
+
+  Future<void> _onProductEventSearchProduct(
+    ProductEventSearchProduct event,
+    Emitter emit,
+  ) async {
+    emit(ProductsLoading());
+    if (event.keyword.isNotEmpty) {
+      final products = _productsLoaded.products
+          .where(
+            (p) => p.name.toLowerCase().contains(event.keyword.toLowerCase()),
+          )
+          .toList();
+      emit(
+        _productsLoaded.copyWith(
+          products: products,
+        ),
+      );
+    }
+    if (event.keyword.isEmpty) {
       emit(_productsLoaded);
     }
   }
