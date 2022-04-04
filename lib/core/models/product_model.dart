@@ -32,12 +32,12 @@ class ProductModel {
   factory ProductModel.fromJson(dynamic json) => ProductModel(
         id: json['id'] as int,
         title: json['title'] as String,
-        price: double.parse(json['price'] as String),
+        price: toDouble(json['price']),
         description: json['description'] as String,
         category: json['category'] as String,
         image: json['image'] as String,
-        count: int.parse(json['count'] as String),
-        rate: double.parse(json['rate'] as String),
+        count: toInt(json['count']),
+        rate: toDouble(json['rate']),
         url: json['url'] as String,
       );
 
@@ -88,9 +88,22 @@ class ProductModel {
       };
 }
 
-double fromIntToDouble(dynamic value) {
+double toDouble(dynamic value) {
   if (value is int) {
     return value.toDouble();
   }
+  if (value is String) {
+    return double.parse(value);
+  }
   return value as double;
+}
+
+int toInt(dynamic value) {
+  if (value is double) {
+    return value.toInt();
+  }
+  if (value is String) {
+    return int.parse(value);
+  }
+  return value as int;
 }
