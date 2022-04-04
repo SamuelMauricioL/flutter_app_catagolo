@@ -2,6 +2,8 @@ import 'package:app_catalogo/l10n/l10n.dart';
 import 'package:app_catalogo/ui/app/bloc/app_bloc.dart';
 import 'package:app_catalogo/ui/app/routes/app_routes.dart';
 import 'package:app_catalogo/ui/products/data/repositories/products_repository.dart';
+import 'package:app_catalogo/ui/products/detail/data/repositories/detail_repository.dart';
+import 'package:app_catalogo/ui/products/detail/presentation/bloc/detail_bloc.dart';
 import 'package:app_catalogo/ui/products/presentation/bloc/products_bloc.dart';
 import 'package:app_catalogo/ui/shared/bottom_nav_bar/bottom_nav_bar.dart';
 import 'package:app_catalogo/ui/shared/custom_theme.dart';
@@ -21,6 +23,11 @@ class AppPage extends StatelessWidget {
         BlocProvider(
           create: (_) => ProductsBloc(
             repository: context.read<ProductsRepositoryImpl>(),
+          ),
+        ),
+        BlocProvider(
+          create: (_) => DetailBloc(
+            repository: context.read<DetailRepositoryImpl>(),
           ),
         ),
       ],

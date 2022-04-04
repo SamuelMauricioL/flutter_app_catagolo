@@ -9,8 +9,8 @@ abstract class DetailRepository {
   Future<Result<bool, Failure>> saveToFavorites(ProductModel product);
 }
 
-class DetailRepositoryIml implements DetailRepository {
-  DetailRepositoryIml({
+class DetailRepositoryImpl implements DetailRepository {
+  DetailRepositoryImpl({
     required this.localDatasource,
   });
 

@@ -6,6 +6,8 @@ import 'package:app_catalogo/core/storage/storage.dart';
 import 'package:app_catalogo/ui/products/data/datasource/products_local_data_source.dart';
 import 'package:app_catalogo/ui/products/data/datasource/products_remote_data_source.dart';
 import 'package:app_catalogo/ui/products/data/repositories/products_repository.dart';
+import 'package:app_catalogo/ui/products/detail/data/datasource/detail_local_data_source.dart';
+import 'package:app_catalogo/ui/products/detail/data/repositories/detail_repository.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -40,6 +42,9 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
       final productsLocalDS = ProductsLocalDataSource(storage: storage);
       final productsRemoteDS = ProductsRemoteDataSource();
 
+      //Detail
+      final detailLocalDS = DetailLocalDataSource(storage: storage);
+
       await BlocOverrides.runZoned(
         () async => runApp(
           MultiRepositoryProvider(
@@ -49,6 +54,11 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
                   localDatasource: productsLocalDS,
                   remoteDataSource: productsRemoteDS,
                   networkChecker: networkChecker,
+                ),
+              ),
+              RepositoryProvider<DetailRepositoryImpl>(
+                create: (_) => DetailRepositoryImpl(
+                  localDatasource: detailLocalDS,
                 ),
               ),
             ],
