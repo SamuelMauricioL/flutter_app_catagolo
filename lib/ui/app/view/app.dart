@@ -1,6 +1,8 @@
 import 'package:app_catalogo/l10n/l10n.dart';
 import 'package:app_catalogo/ui/app/bloc/app_bloc.dart';
 import 'package:app_catalogo/ui/app/routes/app_routes.dart';
+import 'package:app_catalogo/ui/favorites/data/repositories/favorites_repository.dart';
+import 'package:app_catalogo/ui/favorites/presentation/bloc/favorites_bloc.dart';
 import 'package:app_catalogo/ui/products/data/repositories/products_repository.dart';
 import 'package:app_catalogo/ui/products/detail/data/repositories/detail_repository.dart';
 import 'package:app_catalogo/ui/products/detail/presentation/bloc/detail_bloc.dart';
@@ -28,6 +30,11 @@ class AppPage extends StatelessWidget {
         BlocProvider(
           create: (_) => DetailBloc(
             repository: context.read<DetailRepositoryImpl>(),
+          ),
+        ),
+        BlocProvider(
+          create: (_) => FavoritesBloc(
+            repository: context.read<FavoritesRepositoryImpl>(),
           ),
         ),
       ],
