@@ -3,8 +3,8 @@ import 'package:app_catalogo/ui/products/presentation/view/products_filter_item.
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ProductsFilterList extends StatelessWidget {
-  const ProductsFilterList({Key? key}) : super(key: key);
+class ProductsCategoryList extends StatelessWidget {
+  const ProductsCategoryList({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +12,7 @@ class ProductsFilterList extends StatelessWidget {
       buildWhen: (previous, current) => current is ProductsLoaded,
       builder: (context, state) {
         if (state is ProductsLoaded) {
-          return ProductsFilterListBody(
+          return ProductsCategoryListBody(
             categories: state.categories,
             category: state.category,
           );
@@ -23,8 +23,8 @@ class ProductsFilterList extends StatelessWidget {
   }
 }
 
-class ProductsFilterListBody extends StatelessWidget {
-  const ProductsFilterListBody({
+class ProductsCategoryListBody extends StatelessWidget {
+  const ProductsCategoryListBody({
     Key? key,
     required this.category,
     required this.categories,

@@ -46,7 +46,7 @@ class ProductsView extends StatelessWidget {
               const SizedBox(height: 20),
               Text('Popular Category', style: CustomStyle.textH1),
               const SizedBox(height: 20),
-              const ProductsFilterList(),
+              const ProductsCategoryList(),
               const SizedBox(height: 10),
               const ProductsList(),
               const ProductListState()
