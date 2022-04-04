@@ -19,7 +19,7 @@ String productModelToJson(List<ProductModel> data) => json.encode(
 class ProductModel {
   ProductModel({
     required this.id,
-    required this.name,
+    required this.title,
     required this.price,
     required this.description,
     required this.category,
@@ -31,8 +31,8 @@ class ProductModel {
 
   factory ProductModel.fromJson(dynamic json) => ProductModel(
         id: json['id'] as int,
-        name: json['title'] as String,
-        price: double.parse(json['rate'] as String),
+        title: json['title'] as String,
+        price: double.parse(json['price'] as String),
         description: json['description'] as String,
         category: json['category'] as String,
         image: json['image'] as String,
@@ -42,7 +42,7 @@ class ProductModel {
       );
 
   int id;
-  String name;
+  String title;
   double price;
   String description;
   String category;
@@ -54,7 +54,7 @@ class ProductModel {
   ProductModel empty() {
     return ProductModel(
       id: 1,
-      name: '',
+      title: '',
       price: 0,
       description: '',
       category: '',
@@ -77,13 +77,14 @@ class ProductModel {
 
   Map<String, dynamic> toJson() => <String, dynamic>{
         'id': id,
-        'name': name,
+        'title': title,
         'price': price,
         'description': description,
         'category': category,
         'image': image,
         'count': count,
         'rate': rate,
+        'url': url,
       };
 }
 

@@ -36,7 +36,7 @@ class DetailPage extends StatelessWidget {
                       DetailImage(image: product.image),
                       const SizedBox(height: 20),
                       DetailInfo(
-                        name: product.name,
+                        name: product.title,
                         rate: product.rate.toString(),
                         description: product.description,
                       ),

@@ -124,7 +124,7 @@ class _ProductsListBodyState extends State<ProductsListBody> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              widget.products[i].name,
+                              widget.products[i].title,
                               style: CustomStyle.textH5,
                             ),
                             const SizedBox(height: 10),

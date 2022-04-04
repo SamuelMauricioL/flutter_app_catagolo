@@ -112,7 +112,7 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
     if (event.keyword.isNotEmpty) {
       final products = _productsLoaded.products
           .where(
-            (p) => p.name.toLowerCase().contains(event.keyword.toLowerCase()),
+            (p) => p.title.toLowerCase().contains(event.keyword.toLowerCase()),
           )
           .toList();
       emit(
