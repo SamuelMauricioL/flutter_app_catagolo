@@ -46,20 +46,25 @@ class BottomNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<AppBloc, AppState>(
       builder: (context, state) {
-        return BottomNavigationBar(
-          items: _getItems(),
-          currentIndex: _getCurrentIndex(),
-          type: BottomNavigationBarType.fixed,
-          selectedItemColor: CustomColor.primary,
-          unselectedItemColor: Colors.grey.shade400,
-          onTap: (index) {
-            appBloc.add(
-              AppPageChangedTo(
-                page: _pages().values.toList()[index],
-              ),
-            );
-          },
-        );
+        if (state.pageStatus == AppPageStatus.home ||
+            state.pageStatus == AppPageStatus.profile ||
+            state.pageStatus == AppPageStatus.favorites) {
+          return BottomNavigationBar(
+            items: _getItems(),
+            currentIndex: _getCurrentIndex(),
+            type: BottomNavigationBarType.fixed,
+            selectedItemColor: CustomColor.primary,
+            unselectedItemColor: Colors.grey.shade400,
+            onTap: (index) {
+              appBloc.add(
+                AppPageChangedTo(
+                  page: _pages().values.toList()[index],
+                ),
+              );
+            },
+          );
+        }
+        return const SizedBox.shrink();
       },
     );
   }

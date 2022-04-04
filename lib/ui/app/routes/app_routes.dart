@@ -1,6 +1,7 @@
 import 'package:app_catalogo/ui/app/bloc/app_bloc.dart';
 import 'package:app_catalogo/ui/favorites/presentation/view.dart';
-import 'package:app_catalogo/ui/products/presentation/view/products_page.dart';
+import 'package:app_catalogo/ui/products/detail/presentation/view.dart';
+import 'package:app_catalogo/ui/products/presentation/view/view.dart';
 import 'package:flutter/material.dart';
 
 List<Page> onGenerateAppViewPages(AppState state, List<Page> pages) {
@@ -8,6 +9,10 @@ List<Page> onGenerateAppViewPages(AppState state, List<Page> pages) {
     case AppPageStatus.home:
       return [
         ProductsPage.page(),
+      ];
+    case AppPageStatus.detail:
+      return [
+        DetailPage.page(),
       ];
     case AppPageStatus.favorites:
       return [
