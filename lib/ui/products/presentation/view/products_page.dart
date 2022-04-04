@@ -49,23 +49,7 @@ class ProductsView extends StatelessWidget {
               const SizedBox(height: 20),
               const ProductsFilterList(),
               const SizedBox(height: 10),
-              Expanded(
-                child: BlocBuilder<ProductsBloc, ProductsState>(
-                  builder: (_, state) {
-                    if (state is ProductsLoaded) {
-                      return ProductsList(
-                        products: state.products,
-                        category: state.category,
-                        productsBloc: context.read<ProductsBloc>(),
-                      );
-                    }
-                    if (state is ProductsError) {
-                      return Text(state.message);
-                    }
-                    return const CustomLoading();
-                  },
-                ),
-              ),
+              const ProductsList(),
               BlocBuilder<ProductsBloc, ProductsState>(
                 buildWhen: (previous, current) => current is ProductsLoaded,
                 builder: (_, state) {

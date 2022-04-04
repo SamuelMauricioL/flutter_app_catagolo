@@ -2,10 +2,37 @@ import 'package:app_catalogo/ui/products/models/product_model.dart';
 import 'package:app_catalogo/ui/products/presentation/bloc/products_bloc.dart';
 import 'package:app_catalogo/ui/shared/custom_color.dart';
 import 'package:app_catalogo/ui/shared/custom_style.dart';
+import 'package:app_catalogo/ui/shared/loading/custom_loading.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ProductsList extends StatefulWidget {
-  const ProductsList({
+class ProductsList extends StatelessWidget {
+  const ProductsList({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: BlocBuilder<ProductsBloc, ProductsState>(
+        builder: (_, state) {
+          if (state is ProductsLoaded) {
+            return ProductsListBody(
+              products: state.products,
+              category: state.category,
+              productsBloc: context.read<ProductsBloc>(),
+            );
+          }
+          if (state is ProductsError) {
+            return Text(state.message);
+          }
+          return const CustomLoading();
+        },
+      ),
+    );
+  }
+}
+
+class ProductsListBody extends StatefulWidget {
+  const ProductsListBody({
     Key? key,
     required this.products,
     required this.productsBloc,
@@ -17,10 +44,10 @@ class ProductsList extends StatefulWidget {
   final String category;
 
   @override
-  State<ProductsList> createState() => _ProductsListState();
+  State<ProductsListBody> createState() => _ProductsListBodyState();
 }
 
-class _ProductsListState extends State<ProductsList> {
+class _ProductsListBodyState extends State<ProductsListBody> {
   late ScrollController _controller;
   String message = '';
 
