@@ -4,7 +4,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProductsFilterList extends StatelessWidget {
-  const ProductsFilterList({
+  const ProductsFilterList({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<ProductsBloc, ProductsState>(
+      buildWhen: (previous, current) => current is ProductsLoaded,
+      builder: (context, state) {
+        if (state is ProductsLoaded) {
+          return ProductsFilterListBody(
+            categories: state.categories,
+            category: state.category,
+          );
+        }
+        return const SizedBox.shrink();
+      },
+    );
+  }
+}
+
+class ProductsFilterListBody extends StatelessWidget {
+  const ProductsFilterListBody({
     Key? key,
     required this.category,
     required this.categories,
