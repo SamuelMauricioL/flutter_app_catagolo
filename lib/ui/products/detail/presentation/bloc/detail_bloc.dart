@@ -22,7 +22,18 @@ class DetailBloc extends Bloc<DetailEvent, DetailState> {
     Emitter emit,
   ) async {
     emit(DetailLoading());
-    // await Future.delayed(Duration(seconds: 1));
-    emit(DetailLoaded());
+    final product = await repository.addToFavorites(event.product);
+    product.when(
+      ok: (product) {
+        emit(DetailLoaded());
+      },
+      err: (error) {
+        emit(
+          const DetailError(
+            message: 'Ocurrio un error al agregar el producto a favoritos',
+          ),
+        );
+      },
+    );
   }
 }

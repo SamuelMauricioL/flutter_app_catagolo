@@ -6,7 +6,7 @@ import 'package:oxidized/oxidized.dart';
 
 // ignore: one_member_abstracts
 abstract class DetailRepository {
-  Future<Result<bool, Failure>> saveToFavorites(ProductModel product);
+  Future<Result<bool, Failure>> addToFavorites(ProductModel product);
 }
 
 class DetailRepositoryImpl implements DetailRepository {
@@ -17,7 +17,7 @@ class DetailRepositoryImpl implements DetailRepository {
   final DetailLocalDataSource localDatasource;
 
   @override
-  Future<Result<bool, Failure>> saveToFavorites(ProductModel product) async {
+  Future<Result<bool, Failure>> addToFavorites(ProductModel product) async {
     try {
       final isSaved = await localDatasource.cacheFavorite(product);
       return Result.ok(isSaved);
