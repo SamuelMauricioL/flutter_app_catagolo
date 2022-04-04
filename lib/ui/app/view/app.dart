@@ -1,6 +1,8 @@
 import 'package:app_catalogo/l10n/l10n.dart';
 import 'package:app_catalogo/ui/app/bloc/app_bloc.dart';
 import 'package:app_catalogo/ui/app/routes/app_routes.dart';
+import 'package:app_catalogo/ui/products/data/repositories/products_repository.dart';
+import 'package:app_catalogo/ui/products/presentation/bloc/products_bloc.dart';
 import 'package:app_catalogo/ui/shared/bottom_nav_bar/bottom_nav_bar.dart';
 import 'package:app_catalogo/ui/shared/custom_theme.dart';
 import 'package:flow_builder/flow_builder.dart';
@@ -13,8 +15,15 @@ class AppPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => AppBloc(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (_) => AppBloc()),
+        BlocProvider(
+          create: (_) => ProductsBloc(
+            repository: context.read<ProductsRepositoryImpl>(),
+          ),
+        ),
+      ],
       child: const AppView(),
     );
   }

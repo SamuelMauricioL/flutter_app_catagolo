@@ -14,6 +14,7 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
     on<ProductEventListByCategoryCalled>(_onProductEventListByCategory);
     on<ProductEventDisableBottomBanner>(_onProductEventDisableBottomBanner);
     on<ProductEventSearchProduct>(_onProductEventSearchProduct);
+    on<ProductEventSelectProduct>(_onProductEventSelectProduct);
   }
 
   final ProductsRepository repository;
@@ -123,5 +124,17 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
     if (event.keyword.isEmpty) {
       emit(_productsLoaded);
     }
+  }
+
+  Future<void> _onProductEventSelectProduct(
+    ProductEventSelectProduct event,
+    Emitter emit,
+  ) async {
+    emit(ProductsLoading());
+    emit(
+      _productsLoaded.copyWith(
+        selectedProduct: event.product,
+      ),
+    );
   }
 }

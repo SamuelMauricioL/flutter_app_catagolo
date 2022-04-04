@@ -92,9 +92,13 @@ class _ProductsListBodyState extends State<ProductsListBody> {
           return Padding(
             padding: const EdgeInsets.only(bottom: 10),
             child: GestureDetector(
-              onTap: () => context
-                  .read<AppBloc>()
-                  .add(const AppPageChangedTo(page: AppPageStatus.detail)),
+              onTap: () {
+                widget.productsBloc
+                    .add(ProductEventSelectProduct(widget.products[i]));
+                context
+                    .read<AppBloc>()
+                    .add(const AppPageChangedTo(page: AppPageStatus.detail));
+              },
               child: Card(
                 elevation: 2,
                 margin: EdgeInsets.zero,

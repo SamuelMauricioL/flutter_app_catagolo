@@ -1,4 +1,3 @@
-import 'package:app_catalogo/ui/products/data/repositories/products_repository.dart';
 import 'package:app_catalogo/ui/products/presentation/bloc/products_bloc.dart';
 import 'package:app_catalogo/ui/products/presentation/view/producst_filter_list.dart';
 import 'package:app_catalogo/ui/products/presentation/view/products_app_bar.dart';
@@ -20,10 +19,11 @@ class ProductsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => ProductsBloc(
-        repository: context.read<ProductsRepositoryImpl>(),
-      )..add(ProductEventListCalled()),
+    return BlocProvider<ProductsBloc>.value(
+      value: BlocProvider.of<ProductsBloc>(context)
+        ..add(
+          ProductEventListCalled(),
+        ),
       child: const ProductsView(),
     );
   }

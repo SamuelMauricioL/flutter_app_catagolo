@@ -30,3 +30,12 @@ class ProductEventSearchProduct extends ProductsEvent {
   @override
   List<Object> get props => [keyword];
 }
+
+class ProductEventSelectProduct extends ProductsEvent {
+  const ProductEventSelectProduct(this.product);
+
+  final ProductModel product;
+
+  @override
+  List<Object> get props => [product];
+}

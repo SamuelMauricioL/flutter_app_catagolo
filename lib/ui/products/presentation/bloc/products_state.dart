@@ -19,6 +19,7 @@ class ProductsLoaded extends ProductsState {
     this.isLoadingMore = false,
     this.page = 2,
     this.hasNextPage = true,
+    this.selectedProduct,
   });
 
   final List<ProductModel> products;
@@ -27,6 +28,7 @@ class ProductsLoaded extends ProductsState {
   final bool isLoadingMore;
   final int page;
   final bool hasNextPage;
+  final ProductModel? selectedProduct;
 
   ProductsLoaded copyWith({
     List<ProductModel>? products,
@@ -35,6 +37,7 @@ class ProductsLoaded extends ProductsState {
     bool? isLoadingMore,
     int? page,
     bool? hasNextPage,
+    ProductModel? selectedProduct,
   }) {
     return ProductsLoaded(
       products: products ?? this.products,
@@ -43,6 +46,7 @@ class ProductsLoaded extends ProductsState {
       isLoadingMore: isLoadingMore ?? this.isLoadingMore,
       page: page ?? this.page,
       hasNextPage: hasNextPage ?? this.hasNextPage,
+      selectedProduct: selectedProduct ?? this.selectedProduct,
     );
   }
 

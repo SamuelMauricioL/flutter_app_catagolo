@@ -51,20 +51,18 @@ class ProductModel {
   double rate;
   String url;
 
-  static List<ProductModel> empty() {
-    return [
-      ProductModel(
-        id: 1,
-        name: '',
-        price: 0,
-        description: '',
-        category: '',
-        image: '',
-        count: 0,
-        rate: 0,
-        url: '',
-      ),
-    ];
+  ProductModel empty() {
+    return ProductModel(
+      id: 1,
+      name: '',
+      price: 0,
+      description: '',
+      category: '',
+      image: '',
+      count: 0,
+      rate: 0,
+      url: '',
+    );
   }
 
   static List<String> getCategories(List<ProductModel> products) {
