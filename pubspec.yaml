@@ -45,6 +45,8 @@ flutter:
     - assets/icons/search.svg
     - assets/icons/notification.svg
     - assets/icons/arrow_left.svg
+    - assets/icons/specifications.svg
+    - assets/icons/colors.svg
 
   fonts:
     - family: BwNista

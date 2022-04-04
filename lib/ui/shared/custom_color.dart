@@ -13,4 +13,5 @@ class CustomColor {
   static const Color deepRed = Color.fromRGBO(255, 51, 55, 1);
   static const Color magenta = Color.fromRGBO(239, 71, 111, 1);
   static const Color shadowBlue = Color.fromRGBO(64, 123, 255, 0.12);
+  static const Color yellow = Color.fromRGBO(242, 207, 99, 0.99);
 }
