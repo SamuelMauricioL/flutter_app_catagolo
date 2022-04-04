@@ -3,6 +3,8 @@ import 'dart:developer';
 
 import 'package:app_catalogo/core/network/network_checker.dart';
 import 'package:app_catalogo/core/storage/storage.dart';
+import 'package:app_catalogo/ui/favorites/data/datasource/favorites_local_data_source.dart';
+import 'package:app_catalogo/ui/favorites/data/repositories/favorites_repository.dart';
 import 'package:app_catalogo/ui/products/data/datasource/products_local_data_source.dart';
 import 'package:app_catalogo/ui/products/data/datasource/products_remote_data_source.dart';
 import 'package:app_catalogo/ui/products/data/repositories/products_repository.dart';
@@ -45,6 +47,9 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
       //Detail
       final detailLocalDS = DetailLocalDataSource(storage: storage);
 
+      // Favorites
+      final favoritesLocalDS = FavoritesLocalDataSource(storage: storage);
+
       await BlocOverrides.runZoned(
         () async => runApp(
           MultiRepositoryProvider(
@@ -59,6 +64,11 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
               RepositoryProvider<DetailRepositoryImpl>(
                 create: (_) => DetailRepositoryImpl(
                   localDatasource: detailLocalDS,
+                ),
+              ),
+              RepositoryProvider<FavoritesRepositoryImpl>(
+                create: (_) => FavoritesRepositoryImpl(
+                  localDatasource: favoritesLocalDS,
                 ),
               ),
             ],
