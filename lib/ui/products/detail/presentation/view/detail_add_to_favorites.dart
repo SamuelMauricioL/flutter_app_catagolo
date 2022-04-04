@@ -1,4 +1,5 @@
 import 'package:app_catalogo/core/models/product_model.dart';
+import 'package:app_catalogo/ui/app/bloc/app_bloc.dart';
 import 'package:app_catalogo/ui/products/detail/presentation/bloc/detail_bloc.dart';
 import 'package:app_catalogo/ui/shared/custom_color.dart';
 import 'package:app_catalogo/ui/shared/custom_style.dart';
@@ -24,7 +25,12 @@ class DetailAddToFavorites extends StatelessWidget {
         ),
         const SizedBox(width: 10),
         GestureDetector(
-          onTap: () => bloc.add(DetailEventAddToFavorites(product)),
+          onTap: () {
+            bloc.add(DetailEventAddToFavorites(product));
+            context
+                .read<AppBloc>()
+                .add(const AppPageChangedTo(page: AppPageStatus.favorites));
+          },
           child: Container(
             width: 200,
             height: 60,
