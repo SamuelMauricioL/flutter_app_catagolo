@@ -11,13 +11,13 @@ class BottomNavBar extends StatelessWidget {
 
   Map<String, IconData> _icons() => <String, IconData>{
         'Home': Iconsax.home,
-        'Traking': Iconsax.paintbucket,
-        'Profile': Iconsax.profile,
+        'Favorites': Iconsax.favorite_chart,
+        'Profile': Iconsax.user,
       };
 
   Map<String, AppPageStatus> _pages() => <String, AppPageStatus>{
         'Home': AppPageStatus.home,
-        'Traking': AppPageStatus.traking,
+        'Favorites': AppPageStatus.favorites,
         'Profile': AppPageStatus.profile,
       };
 
