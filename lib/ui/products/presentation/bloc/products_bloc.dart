@@ -131,10 +131,10 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
     Emitter emit,
   ) async {
     emit(ProductsLoading());
-    emit(
-      _productsLoaded.copyWith(
-        selectedProduct: event.product,
-      ),
+    _productsLoaded = _productsLoaded.copyWith(
+      selectedProduct: event.product,
+      page: 1,
     );
+    emit(_productsLoaded);
   }
 }
