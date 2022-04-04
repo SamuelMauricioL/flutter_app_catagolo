@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:app_catalogo/core/error/exceptions.dart';
-import 'package:app_catalogo/ui/products/models/product_model.dart';
+import 'package:app_catalogo/core/models/product_model.dart';
 import 'package:http/http.dart' as http;
 
 class ProductsRemoteDataSource {

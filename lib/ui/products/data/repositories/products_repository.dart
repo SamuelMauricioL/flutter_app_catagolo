@@ -1,9 +1,9 @@
 import 'package:app_catalogo/core/error/exceptions.dart';
 import 'package:app_catalogo/core/error/failures.dart';
+import 'package:app_catalogo/core/models/product_model.dart';
 import 'package:app_catalogo/core/network/network_checker.dart';
 import 'package:app_catalogo/ui/products/data/datasource/products_local_data_source.dart';
 import 'package:app_catalogo/ui/products/data/datasource/products_remote_data_source.dart';
-import 'package:app_catalogo/ui/products/models/product_model.dart';
 import 'package:oxidized/oxidized.dart';
 
 abstract class ProductsRepository {

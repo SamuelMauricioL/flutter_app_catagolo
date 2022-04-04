@@ -1,6 +1,6 @@
 import 'package:app_catalogo/core/error/exceptions.dart';
+import 'package:app_catalogo/core/models/product_model.dart';
 import 'package:app_catalogo/core/storage/storage.dart';
-import 'package:app_catalogo/ui/products/models/product_model.dart';
 
 const CACHED_PRODUCTS = 'CACHED_PRODUCTS';
 

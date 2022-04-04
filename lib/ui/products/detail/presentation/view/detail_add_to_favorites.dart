@@ -1,4 +1,4 @@
-import 'package:app_catalogo/ui/products/models/product_model.dart';
+import 'package:app_catalogo/core/models/product_model.dart';
 import 'package:app_catalogo/ui/shared/custom_color.dart';
 import 'package:app_catalogo/ui/shared/custom_style.dart';
 import 'package:flutter/material.dart';
