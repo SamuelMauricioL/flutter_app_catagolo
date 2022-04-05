@@ -3,6 +3,7 @@ import 'package:app_catalogo/ui/app/bloc/app_bloc.dart';
 import 'package:app_catalogo/ui/products/detail/presentation/bloc/detail_bloc.dart';
 import 'package:app_catalogo/ui/shared/custom_color.dart';
 import 'package:app_catalogo/ui/shared/custom_style.dart';
+import 'package:app_catalogo/ui/shared/snack_bar/custom_snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -26,10 +27,16 @@ class DetailAddToFavorites extends StatelessWidget {
         const SizedBox(width: 10),
         GestureDetector(
           onTap: () {
-            bloc.add(DetailEventAddToFavorites(product));
-            context
-                .read<AppBloc>()
-                .add(const AppPageChangedTo(page: AppPageStatus.favorites));
+            customShowSnackBar(
+              context,
+              message: 'Guardado en Favoritos, redirigiendo...',
+              onClose: () {
+                bloc.add(DetailEventAddToFavorites(product));
+                context
+                    .read<AppBloc>()
+                    .add(const AppPageChangedTo(page: AppPageStatus.favorites));
+              },
+            );
           },
           child: Container(
             width: 200,
