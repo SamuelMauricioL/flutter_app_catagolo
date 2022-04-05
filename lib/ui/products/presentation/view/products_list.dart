@@ -1,9 +1,8 @@
 import 'package:app_catalogo/core/models/product_model.dart';
 import 'package:app_catalogo/ui/app/bloc/app_bloc.dart';
 import 'package:app_catalogo/ui/products/presentation/bloc/products_bloc.dart';
-import 'package:app_catalogo/ui/shared/custom_color.dart';
-import 'package:app_catalogo/ui/shared/custom_style.dart';
 import 'package:app_catalogo/ui/shared/loading/custom_loading.dart';
+import 'package:app_catalogo/ui/shared/product/widget_product_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -99,81 +98,11 @@ class _ProductsListBodyState extends State<ProductsListBody> {
                     .read<AppBloc>()
                     .add(const AppPageChangedTo(page: AppPageStatus.detail));
               },
-              child: Card(
-                elevation: 2,
-                margin: EdgeInsets.zero,
-                color: CustomColor.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(6),
-                ),
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: Image.network(
-                        widget.products[i].image,
-                        fit: BoxFit.cover,
-                        width: 100,
-                        height: 100,
-                      ),
-                    ),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(15),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              widget.products[i].title,
-                              style: CustomStyle.textH5,
-                            ),
-                            const SizedBox(height: 10),
-                            Text(
-                              widget.products[i].description,
-                              style: CustomStyle.textH8
-                                  .copyWith(color: CustomColor.gray),
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 3,
-                            ),
-                            const SizedBox(height: 10),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  '\$${widget.products[i].price}',
-                                  style: CustomStyle.textH4.copyWith(
-                                    color: CustomColor.primary,
-                                  ),
-                                ),
-                                Card(
-                                  elevation: 0,
-                                  margin: EdgeInsets.zero,
-                                  color: CustomColor.primary,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(6),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 15,
-                                      vertical: 7,
-                                    ),
-                                    child: Center(
-                                      child: Text(
-                                        'Buy',
-                                        style: CustomStyle.textH8Bold
-                                            .copyWith(color: CustomColor.white),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+              child: WidgetProductItem(
+                image: widget.products[i].image,
+                title: widget.products[i].title,
+                description: widget.products[i].description,
+                price: widget.products[i].price.toString(),
               ),
             ),
           );

@@ -11,7 +11,7 @@ class FavoritesInitial extends FavoritesState {}
 
 class FavoritesLoading extends FavoritesState {}
 
-class FavoritesLoaded extends FavoritesEvent {
+class FavoritesLoaded extends FavoritesState {
   const FavoritesLoaded(this.products);
 
   final List<ProductModel> products;
