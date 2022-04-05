@@ -25,7 +25,7 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
     final products = await repository.getFavorites();
     products.when(
       ok: (list) {
-        emit(FavoritesLoaded(list));
+        emit(FavoritesLoaded(list.reversed.toList()));
       },
       err: (error) {
         emit(
