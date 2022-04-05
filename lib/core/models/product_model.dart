@@ -107,3 +107,17 @@ int toInt(dynamic value) {
   }
   return value as int;
 }
+
+ProductModel empty() {
+  return ProductModel(
+    id: 1,
+    title: '',
+    price: 0,
+    description: '',
+    category: '',
+    image: '',
+    count: 0,
+    rate: 0,
+    url: '',
+  );
+}
