@@ -20,7 +20,7 @@ class FavoritesLoaded extends FavoritesState {
   List<Object> get props => [products];
 }
 
-class FavoritesError extends FavoritesEvent {
+class FavoritesError extends FavoritesState {
   const FavoritesError({required this.message});
 
   final String message;
