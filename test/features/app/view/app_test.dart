@@ -7,7 +7,9 @@ import '../../../helpers/helpers.dart';
 
 void main() {
   group('App', () {
-    testWidgets('renders AppView', (tester) async {
+    testWidgets(
+        'renders FavoritesPage when app state is AppPageStatus.favorites',
+        (tester) async {
       final appBloc = MockAppBloc();
       when(() => appBloc.state).thenReturn(
         const AppState(
