@@ -60,12 +60,7 @@ class ProductsRepositoryImpl implements ProductsRepository {
         return Result.err(ServerFailure());
       }
     } else {
-      try {
-        final local = await localDatasource.getLastListProducts();
-        return Result.ok(local);
-      } on CacheException {
-        return Result.err(CacheFailure());
-      }
+      return Result.ok(const []);
     }
   }
 }
