@@ -2,6 +2,7 @@ import 'package:app_catalogo/core/models/product_model.dart';
 import 'package:app_catalogo/ui/app/bloc/app_bloc.dart';
 import 'package:app_catalogo/ui/favorites/presentation/bloc/favorites_bloc.dart';
 import 'package:app_catalogo/ui/products/presentation/bloc/products_bloc.dart';
+import 'package:app_catalogo/ui/shared/custom_color.dart';
 import 'package:app_catalogo/ui/shared/loading/custom_loading.dart';
 import 'package:app_catalogo/ui/shared/product/widget_product_item.dart';
 import 'package:flutter/material.dart';
@@ -42,6 +43,7 @@ class FavoritesListBody extends StatelessWidget {
       itemBuilder: (_, i) {
         return Dismissible(
           key: Key(products[i].id.toString()),
+          background: Container(color: CustomColor.secondary),
           onDismissed: (direction) {
             final event = FavoritesEventProductRemoved(product: products[i]);
             favoritesBloc.add(event);
