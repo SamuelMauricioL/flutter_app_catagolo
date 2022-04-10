@@ -10,7 +10,8 @@ import 'package:oxidized/oxidized.dart';
 abstract class FavoritesRepository {
   Future<Result<List<ProductModel>, Failure>> getFavorites();
   Future<Result<List<ProductModel>, Failure>> removeFavorite(
-      ProductModel product);
+    ProductModel product,
+  );
 }
 
 class FavoritesRepositoryImpl implements FavoritesRepository {
