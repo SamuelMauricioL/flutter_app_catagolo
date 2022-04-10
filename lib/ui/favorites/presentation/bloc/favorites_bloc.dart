@@ -43,18 +43,18 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
     Emitter emit,
   ) async {
     emit(FavoritesLoading());
-    // final removed = await repository.removeFavorite(event.product);
-    // removed.when(
-    //   ok: (_) {
-    //     emit(FavoritesLoaded(state.products));
-    //   },
-    //   err: (error) {
-    //     emit(
-    //       const FavoritesError(
-    //         message: 'Ocurrio un error al remover el producto',
-    //       ),
-    //     );
-    //   },
-    // );
+    final removed = await repository.removeFavorite(event.product);
+    removed.when(
+      ok: (list) {
+        emit(FavoritesLoaded(list.reversed.toList()));
+      },
+      err: (error) {
+        emit(
+          const FavoritesError(
+            message: 'Ocurrio un error al remover el producto',
+          ),
+        );
+      },
+    );
   }
 }

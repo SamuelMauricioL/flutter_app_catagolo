@@ -17,4 +17,16 @@ class FavoritesLocalDataSource {
       throw CacheException();
     }
   }
+
+  Future<List<ProductModel>> removeFavorite(ProductModel product) async {
+    try {
+      final list = await storage.read(CACHED_FAVORITES);
+      final products = productModelFromJson(list!);
+      products.removeWhere((p) => p.id == product.id);
+      await storage.write(CACHED_FAVORITES, productModelToJson(products));
+      return Future.value(products);
+    } catch (e) {
+      throw CacheException();
+    }
+  }
 }
