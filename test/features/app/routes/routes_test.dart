@@ -8,14 +8,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
+  const page = AppPageStatus.home;
+
   group('onGenerateAppViewPages', () {
+    test('returns [ProductsPage] when AppPageStatus.home using copyWith', () {
+      expect(
+        onGenerateAppViewPages(
+          const AppState().copyWith(pageStatus: page),
+          [],
+        ),
+        [
+          isA<MaterialPage>().having(
+            (p) => p.child,
+            'child',
+            isA<ProductsPage>(),
+          )
+        ],
+      );
+    });
+
     test('returns [ProductsPage] when AppPageStatus.home', () {
       expect(
         onGenerateAppViewPages(
-          const AppState(
-            // ignore: avoid_redundant_argument_values
-            pageStatus: AppPageStatus.home,
-          ),
+          const AppState(),
           [],
         ),
         [
