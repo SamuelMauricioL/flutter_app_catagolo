@@ -1,7 +1,6 @@
+import 'package:app_catalogo/ui/shared/cache_image/custom_cache_network_image.dart';
 import 'package:app_catalogo/ui/shared/custom_color.dart';
 import 'package:app_catalogo/ui/shared/custom_style.dart';
-import 'package:app_catalogo/ui/shared/loading/custom_loading.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class WidgetProductItem extends StatelessWidget {
@@ -30,17 +29,10 @@ class WidgetProductItem extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.all(10),
-            child: CachedNetworkImage(
-              imageUrl: image,
+            child: CustomCacheNetworkImage(
+              image: image,
               width: 100,
               height: 100,
-              fit: BoxFit.cover,
-              progressIndicatorBuilder: (context, url, downloadProgress) =>
-                  CustomLoading(
-                value: downloadProgress.progress,
-              ),
-              errorWidget: (context, url, dynamic error) =>
-                  const Icon(Icons.error),
             ),
           ),
           Expanded(

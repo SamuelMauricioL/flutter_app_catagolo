@@ -1,3 +1,4 @@
+import 'package:app_catalogo/ui/shared/cache_image/custom_cache_network_image.dart';
 import 'package:flutter/material.dart';
 
 class DetailImage extends StatelessWidget {
@@ -9,10 +10,7 @@ class DetailImage extends StatelessWidget {
     return Center(
       child: SizedBox(
         height: 250,
-        child: Image.network(
-          image,
-          fit: BoxFit.cover,
-        ),
+        child: CustomCacheNetworkImage(image: image),
       ),
     );
   }
