@@ -63,6 +63,7 @@ void main() {
           child: const CounterView(),
         ),
       );
+      await tester.pumpAndSettle();
       await tester.tap(find.byIcon(Icons.remove));
       verify(() => counterCubit.decrement()).called(1);
     });
