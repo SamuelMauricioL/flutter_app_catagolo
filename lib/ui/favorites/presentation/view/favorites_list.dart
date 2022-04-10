@@ -5,6 +5,7 @@ import 'package:app_catalogo/ui/products/presentation/bloc/products_bloc.dart';
 import 'package:app_catalogo/ui/shared/custom_color.dart';
 import 'package:app_catalogo/ui/shared/loading/custom_loading.dart';
 import 'package:app_catalogo/ui/shared/product/widget_product_item.dart';
+import 'package:app_catalogo/ui/shared/snack_bar/custom_snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -47,6 +48,7 @@ class FavoritesListBody extends StatelessWidget {
           onDismissed: (direction) {
             final event = FavoritesEventProductRemoved(product: products[i]);
             favoritesBloc.add(event);
+            customShowSnackBar(context, message: 'Product dismissed');
           },
           child: Padding(
             padding: const EdgeInsets.only(bottom: 10),
