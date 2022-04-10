@@ -3,12 +3,13 @@ import 'package:app_catalogo/ui/app/routes/app_routes.dart';
 import 'package:app_catalogo/ui/favorites/presentation/view/favorites_page.dart';
 import 'package:app_catalogo/ui/products/detail/presentation/view/detail_page.dart';
 import 'package:app_catalogo/ui/products/presentation/view/products_page.dart';
+import 'package:app_catalogo/ui/profile/presentation/view/view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('onGenerateAppViewPages', () {
-    test('returns [ProductsPage] when AppAuthenticated', () {
+    test('returns [ProductsPage] when AppPageStatus.home', () {
       expect(
         onGenerateAppViewPages(
           const AppState(
@@ -27,7 +28,7 @@ void main() {
       );
     });
 
-    test('returns [FavoritesPage] when AppUnauthenticated', () {
+    test('returns [FavoritesPage] when AppPageStatus.favorites', () {
       expect(
         onGenerateAppViewPages(
           const AppState(
@@ -45,7 +46,7 @@ void main() {
       );
     });
 
-    test('returns [DetailPage] when AppUnauthenticated', () {
+    test('returns [DetailPage] when AppPageStatus.detail', () {
       expect(
         onGenerateAppViewPages(
           const AppState(
@@ -63,7 +64,7 @@ void main() {
       );
     });
 
-    test('returns [ProductsPage] when AppUnauthenticated', () {
+    test('returns [ProfilePage] when AppPageStatus.profile', () {
       expect(
         onGenerateAppViewPages(
           const AppState(
@@ -75,7 +76,7 @@ void main() {
           isA<MaterialPage>().having(
             (p) => p.child,
             'child',
-            isA<ProductsPage>(),
+            isA<ProfilePage>(),
           )
         ],
       );
