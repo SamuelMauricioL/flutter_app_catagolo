@@ -8,3 +8,12 @@ abstract class FavoritesEvent extends Equatable {
 }
 
 class FavoritesEventListCalled extends FavoritesEvent {}
+
+class FavoritesEventProductRemoved extends FavoritesEvent {
+  const FavoritesEventProductRemoved({required this.product});
+
+  final ProductModel product;
+
+  @override
+  List<Object> get props => [product];
+}

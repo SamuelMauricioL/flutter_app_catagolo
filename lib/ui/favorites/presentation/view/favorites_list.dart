@@ -36,23 +36,31 @@ class FavoritesListBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final productsBloc = context.read<ProductsBloc>();
+    final favoritesBloc = context.read<FavoritesBloc>();
     return ListView.builder(
       itemCount: products.length,
       itemBuilder: (_, i) {
-        return Padding(
-          padding: const EdgeInsets.only(bottom: 10),
-          child: GestureDetector(
-            onTap: () {
-              productsBloc.add(ProductEventSelectProduct(products[i]));
-              context
-                  .read<AppBloc>()
-                  .add(const AppPageChangedTo(page: AppPageStatus.detail));
-            },
-            child: WidgetProductItem(
-              image: products[i].image,
-              title: products[i].title,
-              description: products[i].description,
-              price: products[i].price.toString(),
+        return Dismissible(
+          key: Key(products[i].id.toString()),
+          onDismissed: (direction) {
+            final event = FavoritesEventProductRemoved(product: products[i]);
+            favoritesBloc.add(event);
+          },
+          child: Padding(
+            padding: const EdgeInsets.only(bottom: 10),
+            child: GestureDetector(
+              onTap: () {
+                productsBloc.add(ProductEventSelectProduct(products[i]));
+                context
+                    .read<AppBloc>()
+                    .add(const AppPageChangedTo(page: AppPageStatus.detail));
+              },
+              child: WidgetProductItem(
+                image: products[i].image,
+                title: products[i].title,
+                description: products[i].description,
+                price: products[i].price.toString(),
+              ),
             ),
           ),
         );
