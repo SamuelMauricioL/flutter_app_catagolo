@@ -62,5 +62,23 @@ void main() {
         ],
       );
     });
+
+    test('returns [ProductsPage] when AppUnauthenticated', () {
+      expect(
+        onGenerateAppViewPages(
+          const AppState(
+            pageStatus: AppPageStatus.profile,
+          ),
+          [],
+        ),
+        [
+          isA<MaterialPage>().having(
+            (p) => p.child,
+            'child',
+            isA<ProductsPage>(),
+          )
+        ],
+      );
+    });
   });
 }
