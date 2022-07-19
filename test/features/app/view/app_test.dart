@@ -6,7 +6,16 @@ import 'package:mocktail/mocktail.dart';
 import '../../../helpers/helpers.dart';
 
 void main() {
-  group('App', () {
+  group('AppPage', () {
+    testWidgets('renders AppPage', (tester) async {
+      await tester.pumpApp2(
+        const AppPage(),
+      );
+      expect(find.byType(AppView), findsOneWidget);
+    });
+  });
+
+  group('AppView', () {
     testWidgets(
         'renders FavoritesPage when app state is AppPageStatus.favorites',
         (tester) async {

@@ -104,4 +104,62 @@ extension PumpApp on WidgetTester {
       ),
     );
   }
+
+  Future<void> pumpApp2(
+    Widget widget, {
+    AppBloc? appBloc,
+  }) async {
+    final storage = Storage();
+
+    // Network checker
+    final networkChecker = NetworkCheckerImpl();
+
+    // Products
+    final productsLocalDS = ProductsLocalDataSource(storage: storage);
+    final productsRemoteDS = ProductsRemoteDataSource();
+
+    //Detail
+    final detailLocalDS = DetailLocalDataSource(storage: storage);
+
+    // Favorites
+    final favoritesLocalDS = FavoritesLocalDataSource(storage: storage);
+
+    return pumpWidget(
+      MultiRepositoryProvider(
+        providers: [
+          RepositoryProvider<ProductsRepositoryImpl>(
+            create: (_) => ProductsRepositoryImpl(
+              localDatasource: productsLocalDS,
+              remoteDataSource: productsRemoteDS,
+              networkChecker: networkChecker,
+            ),
+          ),
+          RepositoryProvider<DetailRepositoryImpl>(
+            create: (_) => DetailRepositoryImpl(
+              localDatasource: detailLocalDS,
+            ),
+          ),
+          RepositoryProvider<FavoritesRepositoryImpl>(
+            create: (_) => FavoritesRepositoryImpl(
+              localDatasource: favoritesLocalDS,
+            ),
+          ),
+        ],
+        child: Builder(
+          builder: (context) {
+            return MaterialApp(
+              localizationsDelegates: const [
+                AppLocalizations.delegate,
+                GlobalMaterialLocalizations.delegate,
+              ],
+              supportedLocales: AppLocalizations.supportedLocales,
+              home: Material(
+                child: widget,
+              ),
+            );
+          },
+        ),
+      ),
+    );
+  }
 }
