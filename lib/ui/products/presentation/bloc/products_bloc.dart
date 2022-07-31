@@ -50,13 +50,13 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
     Emitter emit,
   ) async {
     emit(ProductsLoading());
-    if (event.category != _productsLoaded.category) {
+    if (event.category != _productsLoaded.categorySelected) {
       _productsLoaded = _productsLoaded.copyWith(
         page: 1,
         products: [],
         hasNextPage: true,
         isLoadingMore: true,
-        category: event.category,
+        categorySelected: event.category,
       );
     } else {
       _productsLoaded = _productsLoaded.copyWith(isLoadingMore: true);

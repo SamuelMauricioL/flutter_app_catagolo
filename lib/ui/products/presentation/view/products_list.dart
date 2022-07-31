@@ -17,7 +17,7 @@ class ProductsList extends StatelessWidget {
           if (state is ProductsLoaded) {
             return ProductsListBody(
               products: state.products,
-              category: state.category,
+              category: state.categorySelected,
               productsBloc: context.read<ProductsBloc>(),
             );
           }

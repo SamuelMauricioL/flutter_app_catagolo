@@ -15,7 +15,7 @@ class ProductsLoaded extends ProductsState {
   const ProductsLoaded({
     this.products = const [],
     this.categories = const [],
-    this.category = CATEGORY_ALL,
+    this.categorySelected = CATEGORY_ALL,
     this.isLoadingMore = false,
     this.page = 2,
     this.hasNextPage = true,
@@ -24,7 +24,7 @@ class ProductsLoaded extends ProductsState {
 
   final List<ProductModel> products;
   final List<String> categories;
-  final String category;
+  final String categorySelected;
   final bool isLoadingMore;
   final int page;
   final bool hasNextPage;
@@ -33,7 +33,7 @@ class ProductsLoaded extends ProductsState {
   ProductsLoaded copyWith({
     List<ProductModel>? products,
     List<String>? categories,
-    String? category,
+    String? categorySelected,
     bool? isLoadingMore,
     int? page,
     bool? hasNextPage,
@@ -42,7 +42,7 @@ class ProductsLoaded extends ProductsState {
     return ProductsLoaded(
       products: products ?? this.products,
       categories: categories ?? this.categories,
-      category: category ?? this.category,
+      categorySelected: categorySelected ?? this.categorySelected,
       isLoadingMore: isLoadingMore ?? this.isLoadingMore,
       page: page ?? this.page,
       hasNextPage: hasNextPage ?? this.hasNextPage,
@@ -51,7 +51,7 @@ class ProductsLoaded extends ProductsState {
   }
 
   @override
-  List<Object> get props => [products, categories, category];
+  List<Object> get props => [products, categories, categorySelected];
 }
 
 class ProductsError extends ProductsState {

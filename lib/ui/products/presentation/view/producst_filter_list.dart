@@ -14,7 +14,7 @@ class ProductsCategoryList extends StatelessWidget {
         if (state is ProductsLoaded) {
           return ProductsCategoryListBody(
             categories: state.categories,
-            category: state.category,
+            category: state.categorySelected,
           );
         }
         return const SizedBox.shrink();
