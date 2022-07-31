@@ -38,34 +38,24 @@ class ProductsCategoryListBody extends StatelessWidget {
     return SizedBox(
       height: 30,
       width: double.infinity,
-      child: BlocSelector<ProductsBloc, ProductsState, bool>(
-        selector: (state) {
-          if (state is ProductsLoaded) {
-            return state.category == category;
-          }
-          return false;
-        },
-        builder: (_, state) {
-          return ListView.builder(
-            padding: EdgeInsets.zero,
-            scrollDirection: Axis.horizontal,
-            itemCount: categories.length,
-            itemBuilder: (_, i) {
-              return Padding(
-                padding: const EdgeInsets.only(right: 10),
-                child: GestureDetector(
-                  onTap: () => bloc.add(
-                    ProductEventListByCategoryCalled(
-                      category: categories[i],
-                    ),
-                  ),
-                  child: ProductsItemFilter(
-                    title: categories[i],
-                    isSelected: category == categories[i],
-                  ),
+      child: ListView.builder(
+        padding: EdgeInsets.zero,
+        scrollDirection: Axis.horizontal,
+        itemCount: categories.length,
+        itemBuilder: (_, i) {
+          return Padding(
+            padding: const EdgeInsets.only(right: 10),
+            child: GestureDetector(
+              onTap: () => bloc.add(
+                ProductEventListByCategoryCalled(
+                  category: categories[i],
                 ),
-              );
-            },
+              ),
+              child: ProductsItemFilter(
+                title: categories[i],
+                isSelected: category == categories[i],
+              ),
+            ),
           );
         },
       ),
