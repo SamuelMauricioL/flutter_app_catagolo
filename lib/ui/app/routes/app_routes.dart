@@ -1,6 +1,6 @@
 import 'package:app_catalogo/ui/app/bloc/app_bloc.dart';
 import 'package:app_catalogo/ui/favorites/presentation/view/view.dart';
-import 'package:app_catalogo/ui/products/presentation/view/view.dart';
+import 'package:app_catalogo/ui/products/presentation/route/products_routing.dart';
 import 'package:app_catalogo/ui/profile/presentation/view/view.dart';
 import 'package:flutter/material.dart';
 

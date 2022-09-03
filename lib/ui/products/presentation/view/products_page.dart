@@ -1,7 +1,5 @@
 import 'package:app_catalogo/ui/app/bloc/app_bloc.dart';
 import 'package:app_catalogo/ui/products/presentation/bloc/products_bloc.dart';
-import 'package:app_catalogo/ui/products/presentation/route/products_pages.dart';
-import 'package:app_catalogo/ui/products/presentation/route/products_routes.dart';
 import 'package:app_catalogo/ui/products/presentation/view/producst_filter_list.dart';
 import 'package:app_catalogo/ui/products/presentation/view/products_app_bar.dart';
 import 'package:app_catalogo/ui/products/presentation/view/products_banner.dart';
@@ -9,25 +7,8 @@ import 'package:app_catalogo/ui/products/presentation/view/products_list.dart';
 import 'package:app_catalogo/ui/products/presentation/view/products_list_states.dart';
 import 'package:app_catalogo/ui/shared/bottom_nav_bar/bottom_nav_bar.dart';
 import 'package:app_catalogo/ui/shared/custom_style.dart';
-import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-class ProductsRouting extends StatelessWidget {
-  const ProductsRouting._();
-
-  static Page<void> page() =>
-      const MaterialPage<void>(child: ProductsRouting._());
-
-  @override
-  Widget build(BuildContext context) {
-    return FlowBuilder(
-      state: ProductsPages.products,
-      observers: [HeroController()],
-      onGeneratePages: onGenerateProductsPages,
-    );
-  }
-}
 
 class ProductsPage extends StatelessWidget {
   const ProductsPage._();
