@@ -7,7 +7,6 @@ import 'package:app_catalogo/ui/products/data/repositories/products_repository.d
 import 'package:app_catalogo/ui/products/detail/data/repositories/detail_repository.dart';
 import 'package:app_catalogo/ui/products/detail/presentation/bloc/detail_bloc.dart';
 import 'package:app_catalogo/ui/products/presentation/bloc/products_bloc.dart';
-import 'package:app_catalogo/ui/shared/bottom_nav_bar/bottom_nav_bar.dart';
 import 'package:app_catalogo/ui/shared/custom_theme.dart';
 import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
@@ -56,12 +55,9 @@ class AppView extends StatelessWidget {
         GlobalMaterialLocalizations.delegate,
       ],
       supportedLocales: AppLocalizations.supportedLocales,
-      home: Scaffold(
-        body: FlowBuilder(
-          state: context.select((AppBloc bloc) => bloc.state),
-          onGeneratePages: onGenerateAppViewPages,
-        ),
-        bottomNavigationBar: BottomNavBar(appBloc: context.read<AppBloc>()),
+      home: FlowBuilder(
+        state: context.select((AppBloc bloc) => bloc.state),
+        onGeneratePages: onGenerateAppViewPages,
       ),
     );
   }

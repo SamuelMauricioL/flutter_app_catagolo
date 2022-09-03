@@ -1,5 +1,8 @@
+import 'package:app_catalogo/ui/app/bloc/app_bloc.dart';
+import 'package:app_catalogo/ui/shared/bottom_nav_bar/bottom_nav_bar.dart';
 import 'package:app_catalogo/ui/shared/custom_style.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage._();
@@ -27,6 +30,7 @@ class ProfilePage extends StatelessWidget {
           ),
         ),
       ),
+      bottomNavigationBar: BottomNavBar(appBloc: context.read<AppBloc>()),
     );
   }
 }
