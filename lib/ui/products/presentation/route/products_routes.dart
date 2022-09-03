@@ -8,11 +8,6 @@ List<Page<dynamic>> onGenerateProductsPages(
   List<Page<dynamic>> pages,
 ) {
   switch (state) {
-    case ProductsPages.other:
-      return [
-        ProductsPage.page(),
-        DetailPage.page(),
-      ];
     case ProductsPages.detail:
       return [
         ProductsPage.page(),
