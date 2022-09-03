@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 class ProductsRemoteDataSource {
   String apiUrl = 'https://retoolapi.dev/2XpavB';
 
-  Future<List<ProductModel>> getProductList() async {
+  Future<List<ProductModel>> getProducts() async {
     try {
       final response = await http.get(
         Uri.parse('$apiUrl/catalog'),
@@ -29,7 +29,7 @@ class ProductsRemoteDataSource {
     }
   }
 
-  Future<List<ProductModel>> getProductListByCategory(
+  Future<List<ProductModel>> getProductsByCategory(
     String category,
     int page,
   ) async {

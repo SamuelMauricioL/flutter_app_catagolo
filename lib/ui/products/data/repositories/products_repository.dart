@@ -7,8 +7,8 @@ import 'package:app_catalogo/ui/products/data/datasource/products_remote_data_so
 import 'package:oxidized/oxidized.dart';
 
 abstract class ProductsRepository {
-  Future<Result<List<ProductModel>, Failure>> getProductList();
-  Future<Result<List<ProductModel>, Failure>> getProductListByCategory(
+  Future<Result<List<ProductModel>, Failure>> getProducts();
+  Future<Result<List<ProductModel>, Failure>> getProductsByCategory(
     String category,
     int page,
   );
@@ -26,10 +26,10 @@ class ProductsRepositoryImpl implements ProductsRepository {
   final NetworkChecker networkChecker;
 
   @override
-  Future<Result<List<ProductModel>, Failure>> getProductList() async {
+  Future<Result<List<ProductModel>, Failure>> getProducts() async {
     if (await networkChecker.isConnected) {
       try {
-        final remote = await remoteDataSource.getProductList();
+        final remote = await remoteDataSource.getProducts();
         localDatasource.cacheProducts(remote);
         return Result.ok(remote);
       } on ServerException {
@@ -46,14 +46,14 @@ class ProductsRepositoryImpl implements ProductsRepository {
   }
 
   @override
-  Future<Result<List<ProductModel>, Failure>> getProductListByCategory(
+  Future<Result<List<ProductModel>, Failure>> getProductsByCategory(
     String category,
     int page,
   ) async {
     if (await networkChecker.isConnected) {
       try {
         final remote =
-            await remoteDataSource.getProductListByCategory(category, page);
+            await remoteDataSource.getProductsByCategory(category, page);
         localDatasource.cacheProducts(remote);
         return Result.ok(remote);
       } on ServerException {

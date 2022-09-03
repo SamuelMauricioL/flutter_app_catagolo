@@ -26,7 +26,7 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
     Emitter emit,
   ) async {
     emit(ProductsLoading());
-    final products = await repository.getProductList();
+    final products = await repository.getProducts();
     products.when(
       ok: (list) {
         _productsLoaded = _productsLoaded.copyWith(
@@ -63,7 +63,7 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
     }
     emit(_productsLoaded);
 
-    final products = await repository.getProductListByCategory(
+    final products = await repository.getProductsByCategory(
       event.category,
       _productsLoaded.page,
     );
