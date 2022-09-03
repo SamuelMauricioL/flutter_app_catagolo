@@ -13,10 +13,11 @@ import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ProductsFlow extends StatelessWidget {
-  const ProductsFlow._();
+class ProductsRouting extends StatelessWidget {
+  const ProductsRouting._();
 
-  static Page<void> page() => const MaterialPage<void>(child: ProductsFlow._());
+  static Page<void> page() =>
+      const MaterialPage<void>(child: ProductsRouting._());
 
   @override
   Widget build(BuildContext context) {

@@ -8,7 +8,7 @@ List<Page> onGenerateAppViewPages(AppState state, List<Page> pages) {
   switch (state.pageStatus) {
     case AppPageStatus.home:
       return [
-        ProductsFlow.page(),
+        ProductsRouting.page(),
       ];
     case AppPageStatus.favorites:
       return [
