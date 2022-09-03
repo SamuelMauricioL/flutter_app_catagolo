@@ -2,13 +2,11 @@ import 'package:app_catalogo/ui/shared/custom_style.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({Key? key}) : super(key: key);
+  const ProfilePage._();
 
-  static Page page() {
-    return const MaterialPage<void>(
-      child: ProfilePage(),
-    );
-  }
+  static Page<void> page() => const MaterialPage<void>(
+        child: ProfilePage._(),
+      );
 
   @override
   Widget build(BuildContext context) {

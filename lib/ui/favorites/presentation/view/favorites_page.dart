@@ -5,13 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class FavoritesPage extends StatelessWidget {
-  const FavoritesPage({Key? key}) : super(key: key);
+  const FavoritesPage._();
 
-  static Page page() {
-    return const MaterialPage<void>(
-      child: FavoritesPage(),
-    );
-  }
+  static Page<void> page() => const MaterialPage<void>(
+        child: FavoritesPage._(),
+      );
 
   @override
   Widget build(BuildContext context) {
