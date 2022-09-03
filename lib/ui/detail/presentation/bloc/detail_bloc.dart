@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:app_catalogo/core/models/product_model.dart';
-import 'package:app_catalogo/ui/products/detail/data/repositories/detail_repository.dart';
+import 'package:app_catalogo/ui/detail/data/repositories/detail_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 

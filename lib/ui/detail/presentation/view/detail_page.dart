@@ -1,8 +1,8 @@
-import 'package:app_catalogo/ui/products/detail/presentation/view/detail_add_to_favorites.dart';
-import 'package:app_catalogo/ui/products/detail/presentation/view/detail_app_bar.dart';
-import 'package:app_catalogo/ui/products/detail/presentation/view/detail_customize.dart';
-import 'package:app_catalogo/ui/products/detail/presentation/view/detail_image.dart';
-import 'package:app_catalogo/ui/products/detail/presentation/view/detail_info.dart';
+import 'package:app_catalogo/ui/detail/presentation/view/detail_add_to_favorites.dart';
+import 'package:app_catalogo/ui/detail/presentation/view/detail_app_bar.dart';
+import 'package:app_catalogo/ui/detail/presentation/view/detail_customize.dart';
+import 'package:app_catalogo/ui/detail/presentation/view/detail_image.dart';
+import 'package:app_catalogo/ui/detail/presentation/view/detail_info.dart';
 import 'package:app_catalogo/ui/products/presentation/bloc/products_bloc.dart';
 import 'package:app_catalogo/ui/shared/page_transitions/fade_transition.dart';
 import 'package:flutter/material.dart';

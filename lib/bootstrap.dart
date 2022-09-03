@@ -3,13 +3,13 @@ import 'dart:developer';
 
 import 'package:app_catalogo/core/network/network_checker.dart';
 import 'package:app_catalogo/core/storage/storage.dart';
+import 'package:app_catalogo/ui/detail/data/datasource/detail_local_data_source.dart';
+import 'package:app_catalogo/ui/detail/data/repositories/detail_repository.dart';
 import 'package:app_catalogo/ui/favorites/data/datasource/favorites_local_data_source.dart';
 import 'package:app_catalogo/ui/favorites/data/repositories/favorites_repository.dart';
 import 'package:app_catalogo/ui/products/data/datasource/products_local_data_source.dart';
 import 'package:app_catalogo/ui/products/data/datasource/products_remote_data_source.dart';
 import 'package:app_catalogo/ui/products/data/repositories/products_repository.dart';
-import 'package:app_catalogo/ui/products/detail/data/datasource/detail_local_data_source.dart';
-import 'package:app_catalogo/ui/products/detail/data/repositories/detail_repository.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
