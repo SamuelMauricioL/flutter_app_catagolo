@@ -9,7 +9,7 @@ List<Page> onGenerateAppViewPages(AppState state, List<Page> pages) {
   switch (state.pageStatus) {
     case AppPageStatus.home:
       return [
-        ProductsPage.page(),
+        ProductsFlow.page(),
       ];
     case AppPageStatus.detail:
       return [
