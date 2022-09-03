@@ -2,7 +2,6 @@ part of 'app_bloc.dart';
 
 enum AppPageStatus {
   home,
-  detail,
   favorites,
   profile,
 }

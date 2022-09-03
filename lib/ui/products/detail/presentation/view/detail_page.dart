@@ -4,17 +4,16 @@ import 'package:app_catalogo/ui/products/detail/presentation/view/detail_customi
 import 'package:app_catalogo/ui/products/detail/presentation/view/detail_image.dart';
 import 'package:app_catalogo/ui/products/detail/presentation/view/detail_info.dart';
 import 'package:app_catalogo/ui/products/presentation/bloc/products_bloc.dart';
+import 'package:app_catalogo/ui/shared/page_transitions/fade_transition.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class DetailPage extends StatelessWidget {
-  const DetailPage({Key? key}) : super(key: key);
+  const DetailPage._();
 
-  static Page page() {
-    return const MaterialPage<void>(
-      child: DetailPage(),
-    );
-  }
+  static Page<void> page() => const FadeTransitionOnPage<void>(
+        child: DetailPage._(),
+      );
 
   @override
   Widget build(BuildContext context) {

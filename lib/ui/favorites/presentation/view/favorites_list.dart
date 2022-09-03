@@ -1,11 +1,12 @@
 import 'package:app_catalogo/core/models/product_model.dart';
-import 'package:app_catalogo/ui/app/bloc/app_bloc.dart';
 import 'package:app_catalogo/ui/favorites/presentation/bloc/favorites_bloc.dart';
 import 'package:app_catalogo/ui/products/presentation/bloc/products_bloc.dart';
+import 'package:app_catalogo/ui/products/presentation/route/products_pages.dart';
 import 'package:app_catalogo/ui/shared/custom_color.dart';
 import 'package:app_catalogo/ui/shared/loading/custom_loading.dart';
 import 'package:app_catalogo/ui/shared/product/widget_product_item.dart';
 import 'package:app_catalogo/ui/shared/snack_bar/custom_snack_bar.dart';
+import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -56,8 +57,8 @@ class FavoritesListBody extends StatelessWidget {
               onTap: () {
                 productsBloc.add(ProductEventSelectProduct(products[i]));
                 context
-                    .read<AppBloc>()
-                    .add(const AppPageChangedTo(page: AppPageStatus.detail));
+                    .flow<ProductsPages>()
+                    .update((_) => ProductsPages.detail);
               },
               child: WidgetProductItem(
                 image: products[i].image,
