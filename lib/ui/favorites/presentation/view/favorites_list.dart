@@ -1,7 +1,7 @@
 import 'package:app_catalogo/core/models/product_model.dart';
 import 'package:app_catalogo/ui/favorites/presentation/bloc/favorites_bloc.dart';
+import 'package:app_catalogo/ui/favorites/presentation/routes/favorites_pages.dart';
 import 'package:app_catalogo/ui/products/presentation/bloc/products_bloc.dart';
-import 'package:app_catalogo/ui/products/presentation/route/products_pages.dart';
 import 'package:app_catalogo/ui/shared/custom_color.dart';
 import 'package:app_catalogo/ui/shared/loading/custom_loading.dart';
 import 'package:app_catalogo/ui/shared/product/widget_product_item.dart';
@@ -57,8 +57,8 @@ class FavoritesListBody extends StatelessWidget {
               onTap: () {
                 productsBloc.add(ProductEventSelectProduct(products[i]));
                 context
-                    .flow<ProductsPages>()
-                    .update((_) => ProductsPages.detail);
+                    .flow<FavoritesPages>()
+                    .update((_) => FavoritesPages.detail);
               },
               child: WidgetProductItem(
                 image: products[i].image,
