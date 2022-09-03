@@ -3,8 +3,31 @@ import 'package:app_catalogo/ui/shared/custom_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class ProductsBanner extends StatelessWidget {
+class ProductsBanner extends StatefulWidget {
   const ProductsBanner({Key? key}) : super(key: key);
+
+  @override
+  State<ProductsBanner> createState() => _ProductsBannerState();
+}
+
+class _ProductsBannerState extends State<ProductsBanner>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 2),
+    );
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,11 +70,13 @@ class ProductsBanner extends StatelessWidget {
                       const SizedBox(width: 10),
                       Text('Order Now', style: CustomStyle.textH7),
                       const SizedBox(width: 4),
-                      SvgPicture.asset(
-                        'assets/icons/arrow_right.svg',
-                        color: CustomColor.black,
-                        height: 25,
-                        width: 25,
+                      Container(
+                        child: SvgPicture.asset(
+                          'assets/icons/arrow_right.svg',
+                          color: CustomColor.black,
+                          height: 25,
+                          width: 25,
+                        ),
                       ),
                       const SizedBox(width: 2),
                     ],
