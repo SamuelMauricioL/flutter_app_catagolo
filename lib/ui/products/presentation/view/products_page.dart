@@ -12,13 +12,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProductsFlow extends StatelessWidget {
-  const ProductsFlow({Key? key}) : super(key: key);
+  const ProductsFlow._();
 
-  static Page page() {
-    return const MaterialPage<void>(
-      child: ProductsFlow(),
-    );
-  }
+  static Page<void> page() => const MaterialPage<void>(child: ProductsFlow._());
 
   @override
   Widget build(BuildContext context) {
@@ -31,13 +27,9 @@ class ProductsFlow extends StatelessWidget {
 }
 
 class ProductsPage extends StatelessWidget {
-  const ProductsPage({Key? key}) : super(key: key);
+  const ProductsPage._();
 
-  static Page page() {
-    return const MaterialPage<void>(
-      child: ProductsPage(),
-    );
-  }
+  static Page<void> page() => const MaterialPage<void>(child: ProductsPage._());
 
   @override
   Widget build(BuildContext context) {
