@@ -1,7 +1,6 @@
 import 'package:app_catalogo/ui/app/bloc/app_bloc.dart';
 import 'package:app_catalogo/ui/app/routes/app_routes.dart';
 import 'package:app_catalogo/ui/favorites/presentation/view/favorites_page.dart';
-import 'package:app_catalogo/ui/products/detail/presentation/view/detail_page.dart';
 import 'package:app_catalogo/ui/products/presentation/view/products_page.dart';
 import 'package:app_catalogo/ui/profile/presentation/view/view.dart';
 import 'package:flutter/material.dart';
@@ -56,24 +55,6 @@ void main() {
             (p) => p.child,
             'child',
             isA<FavoritesPage>(),
-          )
-        ],
-      );
-    });
-
-    test('returns [DetailPage] when AppPageStatus.detail', () {
-      expect(
-        onGenerateAppViewPages(
-          const AppState(
-            pageStatus: AppPageStatus.detail,
-          ),
-          [],
-        ),
-        [
-          isA<MaterialPage>().having(
-            (p) => p.child,
-            'child',
-            isA<DetailPage>(),
           )
         ],
       );
