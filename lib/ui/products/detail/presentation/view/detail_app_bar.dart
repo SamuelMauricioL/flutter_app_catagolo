@@ -10,7 +10,7 @@ class DetailAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        context.flow<ProductsPages>().update((_) => ProductsPages.detail);
+        context.flow<ProductsPages>().update((_) => ProductsPages.products);
         return false;
       },
       child: Row(
