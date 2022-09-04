@@ -1,5 +1,6 @@
 import 'package:app_catalogo/ui/shared/custom_color.dart';
 import 'package:app_catalogo/ui/shared/custom_style.dart';
+import 'package:app_catalogo/ui/shared/transitions/down_slide_transition_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -51,9 +52,11 @@ class _ProductsBannerState extends State<ProductsBanner>
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Music and No more',
-                  style: CustomStyle.textH1White,
+                DownSlideTransitionText(
+                  text: Text(
+                    'Music and No more',
+                    style: CustomStyle.textH1White,
+                  ),
                 ),
                 const SizedBox(height: 20),
                 Text(
