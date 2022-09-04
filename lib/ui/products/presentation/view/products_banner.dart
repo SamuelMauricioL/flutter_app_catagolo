@@ -1,6 +1,8 @@
+import 'package:app_catalogo/ui/products/presentation/route/products_pages.dart';
 import 'package:app_catalogo/ui/shared/custom_color.dart';
 import 'package:app_catalogo/ui/shared/custom_style.dart';
 import 'package:app_catalogo/ui/shared/transitions/down_slide_transition_text.dart';
+import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -66,7 +68,9 @@ class _ProductsBannerState extends State<ProductsBanner>
                 const SizedBox(height: 15),
                 ElevatedButton(
                   style: CustomStyle.buttonStyleWhite,
-                  onPressed: () {},
+                  onPressed: () => context
+                      .flow<ProductsPages>()
+                      .update((_) => ProductsPages.offer),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
