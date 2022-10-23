@@ -26,9 +26,9 @@ void main() {
           (_) => tHasConnectionFuture,
         );
         // act
-        final networkCheckerResult = await networkChecker.isConnected;
+        final isConnected = networkChecker.isConnected;
         // assert
-        expect(networkCheckerResult, false);
+        expect(isConnected, Future<bool>.value(false));
       },
     );
   });

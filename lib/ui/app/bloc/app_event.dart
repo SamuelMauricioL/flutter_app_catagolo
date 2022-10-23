@@ -1,10 +1,11 @@
 part of 'app_bloc.dart';
 
+//TODO: VERIFICAR COMO TESTEAR EL OVERRIDE
 abstract class AppEvent extends Equatable {
   const AppEvent();
 
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [];
 }
 
 class AppPageChangedTo extends AppEvent {
@@ -13,4 +14,7 @@ class AppPageChangedTo extends AppEvent {
   });
 
   final AppPageStatus page;
+
+  @override
+  List<Object?> get props => [];
 }
