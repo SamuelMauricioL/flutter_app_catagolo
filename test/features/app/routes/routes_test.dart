@@ -1,60 +1,63 @@
 import 'package:app_catalogo/ui/app/bloc/app_bloc.dart';
 import 'package:app_catalogo/ui/app/routes/app_routes.dart';
-import 'package:app_catalogo/ui/favorites/presentation/view/favorites_page.dart';
-import 'package:app_catalogo/ui/products/presentation/view/products_page.dart';
+import 'package:app_catalogo/ui/favorites/presentation/routes/favorites_routing.dart';
+import 'package:app_catalogo/ui/products/presentation/route/products_routing.dart';
 import 'package:app_catalogo/ui/profile/presentation/view/view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  const page = AppPageStatus.home;
+  late AppPageStatus homePage;
+  late AppPageStatus favoritesPage;
+  late AppPageStatus profilePage;
+  late AppState appState;
+
+  setUp(() {
+    homePage = AppPageStatus.home;
+    favoritesPage = AppPageStatus.favorites;
+    profilePage = AppPageStatus.profile;
+    appState = const AppState();
+  });
 
   group('onGenerateAppViewPages', () {
-    test('returns [ProductsPage] when AppPageStatus.home using copyWith', () {
+    test('returns [ProductsRouting] when AppPageStatus.home using copyWith',
+        () {
       expect(
-        onGenerateAppViewPages(
-          const AppState().copyWith(pageStatus: page),
-          [],
-        ),
+        onGenerateAppViewPages(appState.copyWith(pageStatus: homePage), []),
         [
           isA<MaterialPage>().having(
             (p) => p.child,
             'child',
-            isA<ProductsPage>(),
+            isA<ProductsRouting>(),
           )
         ],
       );
     });
 
-    test('returns [ProductsPage] when AppPageStatus.home', () {
+    test('returns [ProductsRouting] when AppPageStatus.home', () {
       expect(
-        onGenerateAppViewPages(
-          const AppState(),
-          [],
-        ),
+        onGenerateAppViewPages(appState, []),
         [
           isA<MaterialPage>().having(
             (p) => p.child,
             'child',
-            isA<ProductsPage>(),
+            isA<ProductsRouting>(),
           )
         ],
       );
     });
 
-    test('returns [FavoritesPage] when AppPageStatus.favorites', () {
+    test('returns [FavoritesRouting] when AppPageStatus.favorites', () {
       expect(
         onGenerateAppViewPages(
-          const AppState(
-            pageStatus: AppPageStatus.favorites,
-          ),
+          appState.copyWith(pageStatus: favoritesPage),
           [],
         ),
         [
           isA<MaterialPage>().having(
             (p) => p.child,
             'child',
-            isA<FavoritesPage>(),
+            isA<FavoritesRouting>(),
           )
         ],
       );
@@ -62,12 +65,7 @@ void main() {
 
     test('returns [ProfilePage] when AppPageStatus.profile', () {
       expect(
-        onGenerateAppViewPages(
-          const AppState(
-            pageStatus: AppPageStatus.profile,
-          ),
-          [],
-        ),
+        onGenerateAppViewPages(appState.copyWith(pageStatus: profilePage), []),
         [
           isA<MaterialPage>().having(
             (p) => p.child,

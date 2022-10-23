@@ -19,6 +19,7 @@ import 'package:app_catalogo/ui/products/data/datasource/products_local_data_sou
 import 'package:app_catalogo/ui/products/data/datasource/products_remote_data_source.dart';
 import 'package:app_catalogo/ui/products/data/repositories/products_repository.dart';
 import 'package:app_catalogo/ui/products/presentation/bloc/products_bloc.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -34,7 +35,8 @@ extension PumpApp on WidgetTester {
     final storage = Storage();
 
     // Network checker
-    final networkChecker = NetworkCheckerImpl();
+    final conectivity = Connectivity();
+    final networkChecker = NetworkCheckerImpl(conectivity);
 
     // Products
     final productsLocalDS = ProductsLocalDataSource(storage: storage);
@@ -112,7 +114,8 @@ extension PumpApp on WidgetTester {
     final storage = Storage();
 
     // Network checker
-    final networkChecker = NetworkCheckerImpl();
+    final conectivity = Connectivity();
+    final networkChecker = NetworkCheckerImpl(conectivity);
 
     // Products
     final productsLocalDS = ProductsLocalDataSource(storage: storage);

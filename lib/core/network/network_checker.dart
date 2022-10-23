@@ -5,7 +5,12 @@ abstract class NetworkChecker {
 }
 
 class NetworkCheckerImpl implements NetworkChecker {
-  final Connectivity connectivity = Connectivity();
+  const NetworkCheckerImpl(
+    this.connectivity,
+  );
+
+  final Connectivity connectivity;
+
   @override
   Future<bool> get isConnected async {
     final result = await connectivity.checkConnectivity();

@@ -10,6 +10,7 @@ import 'package:app_catalogo/ui/favorites/data/repositories/favorites_repository
 import 'package:app_catalogo/ui/products/data/datasource/products_local_data_source.dart';
 import 'package:app_catalogo/ui/products/data/datasource/products_remote_data_source.dart';
 import 'package:app_catalogo/ui/products/data/repositories/products_repository.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -38,7 +39,8 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
       await storage.init();
 
       // Network checker
-      final networkChecker = NetworkCheckerImpl();
+      final conectivity = Connectivity();
+      final networkChecker = NetworkCheckerImpl(conectivity);
 
       // Products
       final productsLocalDS = ProductsLocalDataSource(storage: storage);
