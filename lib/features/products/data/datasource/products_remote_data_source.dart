@@ -5,7 +5,7 @@ import 'package:app_catalogo/core/models/product_model.dart';
 import 'package:http/http.dart' as http;
 
 class ProductsRemoteDataSource {
-  String apiUrl = 'https://retoolapi.dev/2XpavB';
+  String apiUrl = 'https://5a1a06205949.ngrok-free.app';
 
   Future<List<ProductModel>> getProducts() async {
     try {
@@ -18,7 +18,8 @@ class ProductsRemoteDataSource {
       );
       switch (response.statusCode) {
         case 200:
-          return productModelFromJson(response.body);
+          final products = productModelFromJson(response.body);
+          return products;
         case 400:
           throw ServerException();
         default:

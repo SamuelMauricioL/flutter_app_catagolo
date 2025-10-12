@@ -1,0 +1,94 @@
+{
+  "uuid": "e5e7c2ff-9b8c-4a59-900d-ac0cd3ad1ac5",
+  "lastMigration": 33,
+  "name": "App catalog api",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 3001,
+  "hostname": "",
+  "folders": [],
+  "routes": [
+    {
+      "uuid": "cad3dfe5-4680-4c73-b49d-53c87d0c9646",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "catalog",
+      "responses": [
+        {
+          "uuid": "8e6161df-1afd-4016-943c-961a89ca2bd2",
+          "body": "[\n  {\n    \"id\": 1,\n    \"title\": \"Camiseta Flutter Dev\",\n    \"price\": 59.90,\n    \"description\": \"Camiseta de algodón premium con logo de Flutter bordado.\",\n    \"category\": \"Ropa\",\n    \"image\": \"https://supermallpe.vtexassets.com/arquivos/ids/796623-1200-auto?v=638488855257430000\",\n    \"count\": 12,\n    \"rate\": 4.8,\n    \"url\": \"https://supermallpe.vtexassets.com/arquivos/ids/796623-1200-auto?v=638488855257430000\"\n  },\n  {\n    \"id\": 2,\n    \"title\": \"Taza Flutter\",\n    \"price\": 29.50,\n    \"description\": \"Taza blanca con diseño oficial de Flutter y material cerámico resistente.\",\n    \"category\": \"Accesorios\",\n    \"image\": \"https://supermallpe.vtexassets.com/arquivos/ids/796623-1200-auto?v=638488855257430000\",\n    \"count\": 25,\n    \"rate\": 4.6,\n    \"url\": \"https://supermallpe.vtexassets.com/arquivos/ids/796623-1200-auto?v=638488855257430000\"\n  },\n  {\n    \"id\": 3,\n    \"title\": \"Sticker Pack Flutter\",\n    \"price\": 14.99,\n    \"description\": \"Set de 10 stickers resistentes al agua con íconos de Flutter y Dart.\",\n    \"category\": \"Accesorios\",\n    \"image\": \"https://supermallpe.vtexassets.com/arquivos/ids/796623-1200-auto?v=638488855257430000\",\n    \"count\": 40,\n    \"rate\": 4.9,\n    \"url\": \"https://supermallpe.vtexassets.com/arquivos/ids/796623-1200-auto?v=638488855257430000\"\n  },\n  {\n    \"id\": 4,\n    \"title\": \"Sudadera Flutter Azul\",\n    \"price\": 120.00,\n    \"description\": \"Sudadera con capucha de color azul con el logotipo de Flutter en el pecho.\",\n    \"category\": \"Ropa\",\n    \"image\": \"https://supermallpe.vtexassets.com/arquivos/ids/796623-1200-auto?v=638488855257430000\",\n    \"count\": 8,\n    \"rate\": 4.7,\n    \"url\": \"https://supermallpe.vtexassets.com/arquivos/ids/796623-1200-auto?v=638488855257430000\"\n  },\n  {\n    \"id\": 5,\n    \"title\": \"Cuaderno para Notas Flutter\",\n    \"price\": 22.90,\n    \"description\": \"Cuaderno con hojas recicladas y diseño minimalista con el logo de Flutter.\",\n    \"category\": \"Papelería\",\n    \"image\": \"https://supermallpe.vtexassets.com/arquivos/ids/796623-1200-auto?v=638488855257430000\",\n    \"count\": 30,\n    \"rate\": 4.5,\n    \"url\": \"https://supermallpe.vtexassets.com/arquivos/ids/796623-1200-auto?v=638488855257430000\"\n  }\n]\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "route",
+      "uuid": "cad3dfe5-4680-4c73-b49d-53c87d0c9646"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    },
+    {
+      "key": "Access-Control-Allow-Origin",
+      "value": "*"
+    },
+    {
+      "key": "Access-Control-Allow-Methods",
+      "value": "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS"
+    },
+    {
+      "key": "Access-Control-Allow-Headers",
+      "value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": [],
+  "callbacks": []
+}

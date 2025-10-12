@@ -27,22 +27,29 @@ class ProductsRepositoryImpl implements ProductsRepository {
 
   @override
   Future<Result<List<ProductModel>, Failure>> getProducts() async {
-    if (await networkChecker.isConnected) {
-      try {
-        final remote = await remoteDataSource.getProducts();
-        localDatasource.cacheProducts(remote);
-        return Result.ok(remote);
-      } on ServerException {
-        return Result.err(ServerFailure());
-      }
-    } else {
-      try {
-        final local = await localDatasource.getLastListProducts();
-        return Result.ok(local);
-      } on CacheException {
-        return Result.err(CacheFailure());
-      }
+    try {
+      final remote = await remoteDataSource.getProducts();
+      localDatasource.cacheProducts(remote);
+      return Result.ok(remote);
+    } on ServerException {
+      return Result.err(ServerFailure());
     }
+    // if (await networkChecker.isConnected) {
+    //   try {
+    //     final remote = await remoteDataSource.getProducts();
+    //     localDatasource.cacheProducts(remote);
+    //     return Result.ok(remote);
+    //   } on ServerException {
+    //     return Result.err(ServerFailure());
+    //   }
+    // } else {
+    //   try {
+    //     final local = await localDatasource.getLastListProducts();
+    //     return Result.ok(local);
+    //   } on CacheException {
+    //     return Result.err(CacheFailure());
+    //   }
+    // }
   }
 
   @override

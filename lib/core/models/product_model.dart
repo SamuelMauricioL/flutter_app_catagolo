@@ -2,13 +2,16 @@ import 'dart:convert';
 
 const String CATEGORY_ALL = 'All';
 
-List<ProductModel> productModelFromJson(String str) => List<ProductModel>.from(
-      (json.decode(str) as List<dynamic>).map(
-        (dynamic x) {
-          return ProductModel.fromJson(x);
-        },
-      ).toList(),
-    );
+List<ProductModel> productModelFromJson(String str) {
+  final parsedJson = json.decode(str);
+  final jsonList = parsedJson as List<dynamic>;
+  final list = jsonList.map(
+    (dynamic x) {
+      return ProductModel.fromJson(x);
+    },
+  );
+  return list.toList();
+}
 
 String productModelToJson(List<ProductModel> data) => json.encode(
       List<dynamic>.from(
@@ -41,15 +44,15 @@ class ProductModel {
         url: json['url'] as String,
       );
 
-  int id;
-  String title;
-  double price;
-  String description;
-  String category;
-  String image;
-  int count;
-  double rate;
-  String url;
+  final int id;
+  final String title;
+  final double price;
+  final String description;
+  final String category;
+  final String image;
+  final int count;
+  final double rate;
+  final String url;
 
   ProductModel empty() {
     return ProductModel(
