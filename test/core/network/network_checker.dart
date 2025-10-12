@@ -19,8 +19,8 @@ void main() {
       'should forward the call to Connectivity.hasConnection',
       () async {
         // arrange
-        final tHasConnectionFuture = Future<ConnectivityResult>.value(
-          ConnectivityResult.none,
+        final tHasConnectionFuture = Future<List<ConnectivityResult>>.value(
+          [ConnectivityResult.none],
         );
         when(mockConnectivity.checkConnectivity).thenAnswer(
           (_) => tHasConnectionFuture,

@@ -4,33 +4,32 @@ version: 1.0.0+1
 publish_to: none
 
 environment:
-  sdk: ">=2.16.0 <3.0.0"
+  sdk: '>=3.6.1 <4.0.0'
 
 dependencies:
-  bloc: ^8.0.3
+  bloc: ^9.0.1 # gestor de estados
   flutter:
     sdk: flutter
-  flutter_bloc: ^8.0.1
+  flutter_bloc: ^9.1.1 # gestor de estados
   flutter_localizations:
     sdk: flutter
-  intl: ^0.17.0
-  equatable: ^2.0.3
-  connectivity_plus: ^2.3.6
-  get_storage: ^2.0.3
-  iconsax: ^0.0.8
-  flow_builder: ^0.0.9
-  http: ^0.13.4
-  oxidized: ^5.2.0
-  flutter_svg: ^1.0.3
-  cached_network_image: ^3.2.1
+  equatable: ^2.0.3 # igualar objetos
+  connectivity_plus: ^7.0.0 # verificar conectividad
+  get_storage: ^2.0.3 # almacenamiento local
+  iconsax: ^0.0.8 # iconos
+  flow_builder: ^0.1.0 # navegación
+  http: ^1.5.0 # peticiones http
+  oxidized: ^6.2.0 # manejo de errores
+  flutter_svg: ^2.2.1 # svg
+  cached_network_image: ^3.2.1 # almacenar en cache las imágenes que se descargar
 
 dev_dependencies:
-  bloc_test: ^9.0.3
+  bloc_test: ^10.0.0
   flutter_test:
     sdk: flutter
-  mocktail: ^0.3.0
-  very_good_analysis: ^3.0.1
-  flutter_launcher_icons: ^0.9.3
+  mocktail: ^1.0.4
+  very_good_analysis: 9.0.0
+  flutter_launcher_icons: ^0.14.4
 
 flutter_icons:
   android: true
@@ -38,16 +37,11 @@ flutter_icons:
   image_path: "assets/icons/catalog.jpeg"
 
 flutter:
-  uses-material-design: true
+  uses-material-design: true # design system de google
   generate: true
   assets:
-    - assets/images/thumbnails_black.png
-    - assets/icons/arrow_right.svg
-    - assets/icons/search.svg
-    - assets/icons/notification.svg
-    - assets/icons/arrow_left.svg
-    - assets/icons/specifications.svg
-    - assets/icons/colors.svg
+    - assets/images/
+    - assets/icons/
 
   fonts:
     - family: BwNista

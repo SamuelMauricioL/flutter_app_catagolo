@@ -1,8 +1,8 @@
-import 'package:app_catalogo/ui/app/bloc/app_bloc.dart';
-import 'package:app_catalogo/ui/app/routes/app_routes.dart';
-import 'package:app_catalogo/ui/favorites/presentation/routes/favorites_routing.dart';
-import 'package:app_catalogo/ui/products/presentation/route/products_routing.dart';
-import 'package:app_catalogo/ui/profile/presentation/view/view.dart';
+import 'package:app_catalogo/features/app/bloc/app_bloc.dart';
+import 'package:app_catalogo/features/app/routes/app_routes.dart';
+import 'package:app_catalogo/features/favorites/presentation/routes/favorites_routing.dart';
+import 'package:app_catalogo/features/products/presentation/route/products_routing.dart';
+import 'package:app_catalogo/features/profile/presentation/view/view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -29,7 +29,7 @@ void main() {
             (p) => p.child,
             'child',
             isA<ProductsRouting>(),
-          )
+          ),
         ],
       );
     });
@@ -42,7 +42,7 @@ void main() {
             (p) => p.child,
             'child',
             isA<ProductsRouting>(),
-          )
+          ),
         ],
       );
     });
@@ -58,7 +58,7 @@ void main() {
             (p) => p.child,
             'child',
             isA<FavoritesRouting>(),
-          )
+          ),
         ],
       );
     });
@@ -71,7 +71,7 @@ void main() {
             (p) => p.child,
             'child',
             isA<ProfilePage>(),
-          )
+          ),
         ],
       );
     });

@@ -1,4 +1,4 @@
-import 'package:app_catalogo/ui/app/bloc/app_bloc.dart';
+import 'package:app_catalogo/features/app/bloc/app_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

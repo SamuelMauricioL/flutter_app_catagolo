@@ -1,6 +1,6 @@
-import 'package:app_catalogo/ui/app/app.dart';
-import 'package:app_catalogo/ui/app/bloc/app_bloc.dart';
-import 'package:app_catalogo/ui/favorites/presentation/routes/favorites_routing.dart';
+import 'package:app_catalogo/features/app/app.dart';
+import 'package:app_catalogo/features/app/bloc/app_bloc.dart';
+import 'package:app_catalogo/features/favorites/presentation/routes/favorites_routing.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import '../../../helpers/helpers.dart';

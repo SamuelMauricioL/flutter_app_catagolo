@@ -7,18 +7,17 @@
 
 import 'package:app_catalogo/core/network/network_checker.dart';
 import 'package:app_catalogo/core/storage/storage.dart';
-import 'package:app_catalogo/l10n/l10n.dart';
-import 'package:app_catalogo/ui/app/bloc/app_bloc.dart';
-import 'package:app_catalogo/ui/detail/data/datasource/detail_local_data_source.dart';
-import 'package:app_catalogo/ui/detail/data/repositories/detail_repository.dart';
-import 'package:app_catalogo/ui/detail/presentation/bloc/detail_bloc.dart';
-import 'package:app_catalogo/ui/favorites/data/datasource/favorites_local_data_source.dart';
-import 'package:app_catalogo/ui/favorites/data/repositories/favorites_repository.dart';
-import 'package:app_catalogo/ui/favorites/presentation/bloc/favorites_bloc.dart';
-import 'package:app_catalogo/ui/products/data/datasource/products_local_data_source.dart';
-import 'package:app_catalogo/ui/products/data/datasource/products_remote_data_source.dart';
-import 'package:app_catalogo/ui/products/data/repositories/products_repository.dart';
-import 'package:app_catalogo/ui/products/presentation/bloc/products_bloc.dart';
+import 'package:app_catalogo/features/app/bloc/app_bloc.dart';
+import 'package:app_catalogo/features/detail/data/datasource/detail_local_data_source.dart';
+import 'package:app_catalogo/features/detail/data/repositories/detail_repository.dart';
+import 'package:app_catalogo/features/detail/presentation/bloc/detail_bloc.dart';
+import 'package:app_catalogo/features/favorites/data/datasource/favorites_local_data_source.dart';
+import 'package:app_catalogo/features/favorites/data/repositories/favorites_repository.dart';
+import 'package:app_catalogo/features/favorites/presentation/bloc/favorites_bloc.dart';
+import 'package:app_catalogo/features/products/data/datasource/products_local_data_source.dart';
+import 'package:app_catalogo/features/products/data/datasource/products_remote_data_source.dart';
+import 'package:app_catalogo/features/products/data/repositories/products_repository.dart';
+import 'package:app_catalogo/features/products/presentation/bloc/products_bloc.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -91,11 +90,6 @@ extension PumpApp on WidgetTester {
                 ),
               ],
               child: MaterialApp(
-                localizationsDelegates: const [
-                  AppLocalizations.delegate,
-                  GlobalMaterialLocalizations.delegate,
-                ],
-                supportedLocales: AppLocalizations.supportedLocales,
                 home: Material(
                   child: widget,
                 ),
@@ -151,11 +145,6 @@ extension PumpApp on WidgetTester {
         child: Builder(
           builder: (context) {
             return MaterialApp(
-              localizationsDelegates: const [
-                AppLocalizations.delegate,
-                GlobalMaterialLocalizations.delegate,
-              ],
-              supportedLocales: AppLocalizations.supportedLocales,
               home: Material(
                 child: widget,
               ),
